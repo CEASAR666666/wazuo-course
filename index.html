@@ -1,0 +1,2296 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>小瓦作大智慧 - 优化预览版</title>
+  <style>
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 92px; }
+    body { margin: 0; font-family: "Noto Sans SC", "PingFang SC", Arial, sans-serif; color: #2C2825; background: #F7F3ED; background-image: linear-gradient(180deg, rgba(255,255,255,.42), rgba(255,255,255,0) 240px); }
+    button, input, select, textarea { font: inherit; }
+    button { cursor: pointer; border: 0; }
+    .topbar { position: fixed; top: 0; left: 0; right: 0; z-index: 40; display: grid; grid-template-columns: minmax(210px, 1fr) auto minmax(190px, 1fr); align-items: center; gap: 18px; padding: 14px 32px; background: rgba(44,40,37,.24); border-bottom: 1px solid rgba(255,255,255,.16); box-shadow: 0 8px 30px rgba(44,40,37,.08); backdrop-filter: blur(14px); transition: background .24s ease, box-shadow .24s ease; }
+    .topbar.is-scrolled { background: rgba(44,40,37,.82); box-shadow: 0 12px 34px rgba(44,40,37,.18); }
+    .brand { display: flex; align-items: center; gap: 12px; min-width: 0; color: #fff; font-weight: 800; }
+    .brand small { display: block; color: rgba(255,255,255,.68); font-size: 12px; font-weight: 500; margin-top: 2px; }
+    .seal { flex: 0 0 auto; width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; color: #fff; background: linear-gradient(135deg,#C8553D,#E8A87C); box-shadow: 0 4px 16px rgba(200,85,61,.34); font-weight: 800; }
+    .nav, .viewnav { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+    .nav { justify-content: center; }
+    .viewnav { justify-content: flex-end; }
+    .nav button, .viewnav button, .tab button, .ghost { padding: 9px 14px; border-radius: 999px; color: #6B6560; background: #EFEBE3; transition: transform .18s ease, background .18s ease, color .18s ease, box-shadow .18s ease, border-color .18s ease; }
+    .topbar .nav button, .topbar .viewnav button { color: rgba(255,255,255,.82); background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.12); }
+    .nav button:hover, .viewnav button:hover, .tab button:hover, .ghost:hover { transform: translateY(-1px); }
+    .nav button.active, .viewnav button.active, .tab button.active, .primary { color: #fff; background: #C8553D; box-shadow: 0 4px 16px rgba(200,85,61,.28); }
+    .topbar .nav button.active, .topbar .viewnav button.active { color: #fff; background: linear-gradient(135deg,#C8553D,#E8A87C); border-color: transparent; }
+    .hero { min-height: 560px; display: grid; align-items: end; padding: 130px 22px 72px; background: linear-gradient(180deg,rgba(44,40,37,.08),rgba(44,40,37,.84)), url("pattern-library-images/image40.png") center/cover; color: white; position: relative; overflow: hidden; }
+    .hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(44,40,37,.62), rgba(44,40,37,.12), rgba(44,40,37,.62)); pointer-events: none; }
+    .hero .wrap { position: relative; z-index: 1; text-align: center; }
+    .wrap { max-width: 1180px; margin: 0 auto; }
+    h1 { margin: 0 0 14px; font-family: "STKaiti", "Kaiti SC", "Songti SC", serif; font-weight: 500; font-size: clamp(42px, 6vw, 72px); letter-spacing: 0; text-shadow: 0 12px 34px rgba(0,0,0,.28); }
+    h2 { margin: 0 0 10px; font-family: "STKaiti", "Kaiti SC", "Songti SC", serif; font-weight: 500; font-size: 36px; }
+    h3 { margin: 0 0 8px; font-size: 20px; }
+    p { line-height: 1.65; }
+    .hero p { max-width: 720px; margin: 0 auto; color: rgba(255,255,255,.82); font-size: 18px; }
+    .section { padding: 70px 22px; }
+    .section:nth-of-type(even) { background: #EFEBE3; }
+    .module-overview { display: none; }
+    .section-head { display: flex; justify-content: space-between; align-items: end; gap: 18px; margin-bottom: 24px; }
+    .section-head p { max-width: 620px; margin-bottom: 0; }
+    .grid { display: grid; gap: 16px; }
+    .grid4 { grid-template-columns: repeat(4, minmax(0,1fr)); }
+    .grid3 { grid-template-columns: repeat(3, minmax(0,1fr)); }
+    .grid2 { grid-template-columns: repeat(2, minmax(0,1fr)); }
+    .card { background: #EFEBE3; border: 1px solid #D9D3CB; border-radius: 16px; padding: 20px; box-shadow: 0 2px 12px rgba(44,40,37,.06); transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease, background .18s ease; }
+    .card:hover { transform: translateY(-2px); box-shadow: 0 14px 34px rgba(44,40,37,.12); border-color: rgba(200,85,61,.28); }
+    .module { min-height: 130px; text-align: left; transition: .18s ease; }
+    .module:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(44,40,37,.12); }
+    .muted { color: #6B6560; }
+    .badge { display: inline-flex; align-items: center; padding: 4px 9px; border-radius: 999px; color: #C8553D; background: rgba(200,85,61,.1); font-size: 12px; font-weight: 700; }
+    .hero .badge { color: #fff; background: rgba(255,255,255,.16); border: 1px solid rgba(255,255,255,.22); margin-bottom: 18px; }
+    .video-card { min-height: 100%; display: flex; flex-direction: column; text-align: left; overflow: hidden; }
+    .video-thumb { height: 178px; border-radius: 14px; overflow: hidden; position: relative; background: linear-gradient(135deg,#4A6FA5,#C8553D); display: grid; place-items: center; color: #fff; margin-bottom: 16px; }
+    .video-thumb::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg,rgba(44,40,37,0),rgba(44,40,37,.32)); }
+    .play { width: 54px; height: 54px; border-radius: 50%; background: rgba(255,255,255,.26); border: 1px solid rgba(255,255,255,.34); display: grid; place-items: center; font-size: 22px; z-index: 1; backdrop-filter: blur(6px); }
+    .card-meta { display:flex; justify-content:space-between; align-items:center; gap:10px; margin-bottom: 10px; color:#6B6560; font-size: 12px; }
+    .local-chip { display:inline-flex; align-items:center; gap:5px; padding:4px 8px; border-radius:999px; color:#C8553D; background:rgba(200,85,61,.1); font-weight:700; }
+    .duration { color:#4A6FA5; font-weight:700; }
+    .video-card h3 { margin-top: 0; }
+    .video-card p { margin-bottom: 0; }
+    .video-status { margin-top: auto; padding-top: 14px; color: #6B6560; font-size: 12px; }
+    .video-card .actions { margin-top: 14px; }
+    .video-card a.primary { text-decoration: none; display: inline-flex; align-items: center; justify-content: center; }
+    .check-panel { margin: 0 0 18px; padding: 14px 16px; border-radius: 14px; background: rgba(74,111,165,.08); border: 1px solid rgba(74,111,165,.16); color: #4A6FA5; }
+    .check-panel b { color: #2C2825; }
+    .video-actions { display:flex; gap:10px; flex-wrap:wrap; margin-top: 12px; }
+    .video-actions a { text-decoration:none; }
+    .video-lang-tabs { display:flex; gap:8px; flex-wrap:wrap; margin: 0 0 18px; }
+    .video-lang-tabs button { padding: 9px 14px; border-radius: 999px; color:#6B6560; background:#EFEBE3; border:1px solid #D9D3CB; }
+    .video-lang-tabs button.active { color:#fff; background:linear-gradient(135deg,#C8553D,#E8A87C); border-color:transparent; box-shadow:0 4px 16px rgba(200,85,61,.24); }
+    .hint { margin-top: 10px; color:#6B6560; font-size: 13px; }
+    .video-error { margin-top: 10px; padding: 10px 12px; border-radius: 12px; background: rgba(200,85,61,.1); color: #C8553D; font-size: 13px; text-align: left; }
+    .video-note { margin: 10px 0 0; color: #6B6560; font-size: 13px; text-align: left; }
+    .video-actions .primary, .video-actions .ghost { display:inline-flex; align-items:center; justify-content:center; min-height: 40px; text-decoration:none; }
+    .pattern { aspect-ratio: 1; display: grid; place-items: center; background: #F7F3ED; border-radius: 14px; overflow: hidden; margin-bottom: 14px; }
+    svg { max-width: 100%; }
+    .pillrow { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0; }
+    .pill { padding: 8px 12px; border-radius: 999px; background: #EFEBE3; color: #6B6560; }
+    .pill.active { background: #4A6FA5; color: white; }
+    .split { display: grid; grid-template-columns: 320px 1fr; gap: 18px; align-items: start; }
+    .steps { display: grid; gap: 10px; }
+    .step { padding: 14px; border-radius: 14px; background: #F7F3ED; border: 1px solid transparent; text-align: left; }
+    .step.active { border-color: #C8553D; background: rgba(200,85,61,.08); }
+    .step.done { border-color: #5B8C5A; background: rgba(91,140,90,.08); }
+    .stage { min-height: 380px; display: grid; place-items: center; background: #F7F3ED; border: 1px solid #D9D3CB; border-radius: 14px; overflow: hidden; position: relative; }
+    .canvas { width: 100%; height: 390px; border: 1px solid #D9D3CB; border-radius: 14px; background: #F7F3ED; touch-action: none; }
+    .controls { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin: 12px 0; }
+    .swatch { width: 34px; height: 34px; border-radius: 10px; border: 2px solid white; box-shadow: 0 0 0 1px #D9D3CB; }
+    .coloring-layout { display: grid; grid-template-columns: 300px minmax(0,1fr); gap: 18px; align-items: start; }
+    .lineart-list { display: grid; gap: 10px; max-height: 650px; overflow: auto; padding-right: 4px; }
+    .lineart-option { display: grid; grid-template-columns: 72px 1fr; gap: 10px; align-items: center; width: 100%; padding: 10px; border-radius: 12px; background: #F7F3ED; color: #2C2825; text-align: left; border: 1px solid transparent; }
+    .lineart-option.active { border-color: #C8553D; background: rgba(200,85,61,.08); box-shadow: 0 6px 18px rgba(200,85,61,.12); }
+    .lineart-option img { width: 72px; height: 72px; border-radius: 10px; object-fit: cover; background: #fff; border: 1px solid #D9D3CB; }
+    .lineart-option b { display: block; margin-bottom: 3px; }
+    .coloring-canvas-wrap { position: relative; width: min(100%, 680px); aspect-ratio: 1; margin: 0 auto; background: #fff; border: 1px solid #D9D3CB; border-radius: 14px; overflow: hidden; box-shadow: inset 0 0 0 10px #F7F3ED; }
+    .coloring-canvas-wrap canvas, .coloring-canvas-wrap img { position: absolute; inset: 0; width: 100%; height: 100%; }
+    .coloring-canvas-wrap canvas { z-index: 1; touch-action: none; cursor: crosshair; }
+    .coloring-canvas-wrap img { z-index: 2; object-fit: contain; pointer-events: none; mix-blend-mode: multiply; }
+    .range { accent-color: #C8553D; }
+    .form { display: grid; gap: 12px; }
+    .form input, .form select, .form textarea { width: 100%; border: 1px solid #D9D3CB; border-radius: 12px; padding: 11px 12px; background: white; color: #2C2825; }
+    .actions { display: flex; gap: 10px; flex-wrap: wrap; }
+    .primary, .ghost { padding: 10px 16px; border-radius: 12px; }
+    .primary { background: linear-gradient(135deg,#C8553D,#E8A87C); }
+    .modal { position: fixed; inset: 0; z-index: 60; display: none; align-items: center; justify-content: center; padding: 20px; background: rgba(0,0,0,.55); }
+    .modal.open { display: flex; }
+    .panel { width: min(920px,100%); max-height: 90vh; overflow: auto; background: #F7F3ED; border-radius: 16px; }
+    .panel-head { display:flex; justify-content:space-between; align-items:center; padding: 16px 18px; border-bottom: 1px solid #D9D3CB; }
+    .panel-body { padding: 18px; }
+    .fake-video { aspect-ratio: 16/9; background: #111; color: white; display: grid; place-items: center; text-align: center; }
+    .quiz-form { display: grid; gap: 14px; }
+    .quiz-name { width: 100%; border: 1px solid #D9D3CB; border-radius: 12px; padding: 11px 12px; background: white; color: #2C2825; }
+    .quiz-question { padding: 14px; border-radius: 12px; background: #fff; border: 1px solid #D9D3CB; }
+    .quiz-options { display: grid; gap: 8px; margin-top: 10px; }
+    .quiz-options label { display: flex; gap: 8px; align-items: flex-start; line-height: 1.5; }
+    .quiz-result { padding: 14px; border-radius: 12px; background: rgba(91,140,90,.09); border: 1px solid rgba(91,140,90,.22); }
+    .result-table-wrap { overflow-x: auto; border: 1px solid #D9D3CB; border-radius: 12px; background: #fff; }
+    .result-table { width: 100%; border-collapse: collapse; min-width: 760px; }
+    .result-table th, .result-table td { padding: 10px 12px; border-bottom: 1px solid #EFEBE3; text-align: left; vertical-align: top; }
+    .result-table th { color: #6B6560; font-size: 13px; background: #F7F3ED; }
+    .score-good { color: #5B8C5A; font-weight: 800; }
+    .score-warn { color: #C8553D; font-weight: 800; }
+    .hidden { display: none; }
+    @media (max-width: 980px) {
+      .topbar { grid-template-columns: minmax(0, 1fr) auto; justify-items: stretch; padding: 10px 16px; gap: 10px; background: rgba(44,40,37,.82); }
+      .brand { grid-column: 1; grid-row: 1; }
+      .brand small { display: none; }
+      .seal { width: 34px; height: 34px; }
+      .nav { grid-column: 1 / -1; grid-row: 2; justify-content: flex-start; overflow-x: auto; flex-wrap: nowrap; padding-bottom: 2px; }
+      .viewnav { grid-column: 2; grid-row: 1; justify-content: flex-end; flex-wrap: nowrap; }
+      .topbar .nav { gap: 5px; }
+      .topbar .nav button { padding: 8px 9px; font-size: 14px; }
+      .topbar .viewnav button { padding: 8px 10px; font-size: 14px; }
+      .topbar .nav button, .topbar .viewnav button { white-space: nowrap; }
+      .hero { padding-top: 158px; min-height: 560px; }
+    }
+    @media (max-width: 860px) { .grid4,.grid3,.grid2,.split { grid-template-columns: 1fr; } .section-head { display: block; } }
+    @media (max-width: 860px) { .coloring-layout { grid-template-columns: 1fr; } .lineart-list { grid-template-columns: repeat(2, minmax(0,1fr)); max-height: none; } .lineart-option { grid-template-columns: 56px 1fr; } .lineart-option img { width: 56px; height: 56px; } }
+    @media (max-width: 520px) { .lineart-list { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><span class="seal">瓦</span><span>小瓦作·大智慧<small>瓦作通识互动课堂</small></span></div>
+    <nav class="nav" aria-label="模块导航"></nav>
+    <nav class="viewnav">
+      <button class="active" data-view="student">学生端</button>
+      <button data-view="teacher">教师端</button>
+    </nav>
+  </header>
+
+  <main id="student">
+    <section class="hero">
+      <div class="wrap">
+        <span class="badge">课堂可用预览</span>
+        <h1>小瓦作·大智慧</h1>
+        <p>这一版是直接能打开看的页面：视频能点开、纹样能显示、拓片/手绘/涂彩能操作，教师端能生成教案并下载 PPT 文件。</p>
+      </div>
+    </section>
+
+    <section class="section module-overview">
+      <div class="wrap">
+        <h2>学生端模块</h2>
+        <div class="grid grid4">
+          <button class="card module" onclick="scrollToId('videos')"><h3>教学视频</h3><p class="muted">精选微课配小测，边看边学瓦作知识。</p></button>
+          <button class="card module" onclick="scrollToId('patterns')"><h3>纹样库</h3><p class="muted">分类浏览瓦当纹样，理解寓意演变。</p></button>
+          <button class="card module" onclick="scrollToId('game')"><h3>制瓦工坊</h3><p class="muted">选土制坯刻纹样，模拟烧制作品。</p></button>
+          <button class="card module" onclick="scrollToId('training')"><h3>实操训练</h3><p class="muted">体验拓片手绘涂彩，完成动手创作。</p></button>
+        </div>
+      </div>
+    </section>
+
+    <section id="videos" class="section">
+      <div class="wrap">
+        <div class="section-head">
+          <div><span class="badge">视频学习</span><h2>教学视频</h2></div>
+          <p class="muted">视频保存在本地文件夹：中文版在 <b>videos-web</b>，英文版在 <b>videos-web-en</b>。请先解压 ZIP，再双击“打开本地预览.command”或 Windows 启动文件；不要在压缩包里直接打开 HTML，也不建议用微信预览。</p>
+        </div>
+        <div id="videoCheckPanel" class="check-panel">正在检查本地视频播放兼容性...</div>
+        <div class="video-lang-tabs" aria-label="视频语言切换">
+          <button class="active" data-video-lang="zh" onclick="setVideoLanguage('zh')">中文版</button>
+          <button data-video-lang="en" onclick="setVideoLanguage('en')">英文版</button>
+        </div>
+        <div id="videoGrid" class="grid grid3"></div>
+      </div>
+    </section>
+
+    <section id="patterns" class="section">
+      <div class="wrap">
+        <div class="section-head">
+          <div><span class="badge">纹样宝库</span><h2>纹样库</h2></div>
+          <p class="muted">按云纹、莲花、动物纹、瓦件、屋顶形制等分类浏览，点击纹样可带入制瓦和实操训练。</p>
+        </div>
+        <div class="pillrow" id="patternFilters"></div>
+        <div id="patternGrid" class="grid grid4"></div>
+      </div>
+    </section>
+
+    <section id="game" class="section">
+      <div class="wrap">
+        <span class="badge">互动体验</span>
+        <h2>制瓦工坊</h2>
+        <div class="split">
+          <div class="steps" id="gameSteps"></div>
+          <div class="card">
+            <div id="gameStage" class="stage"></div>
+            <div class="actions" style="margin-top:14px">
+              <button class="ghost" onclick="prevGame()">上一步</button>
+              <button class="primary" onclick="nextGame()">下一步</button>
+              <button class="ghost" onclick="resetGame()">重来</button>
+              <button class="primary" onclick="downloadSvg('我的瓦当作品.svg', makeArtworkSvg())">保存作品</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="training" class="section">
+      <div class="wrap">
+        <span class="badge">动手实操</span>
+        <h2>实操训练</h2>
+        <div class="tab pillrow">
+          <button class="active" data-train="rubbing">瓦当拓片</button>
+          <button data-train="drawing">纹样手绘</button>
+          <button data-train="coloring">瓦当纹样涂彩</button>
+        </div>
+        <div id="trainRubbing" class="card">
+          <div class="split">
+            <div class="steps" id="rubbingSteps"></div>
+            <div>
+              <div id="rubbingStage" class="stage" onclick="tapRubbing(event)"></div>
+              <div class="actions" style="margin-top:14px">
+                <button class="primary" onclick="nextRubbing()">下一步</button>
+                <button class="ghost" onclick="resetRubbing()">重来</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="trainDrawing" class="card hidden">
+          <div class="controls">
+            <span class="muted">颜色</span>
+            <button class="swatch" style="background:#2C2825" onclick="brush='#2C2825'"></button>
+            <button class="swatch" style="background:#C8553D" onclick="brush='#C8553D'"></button>
+            <button class="swatch" style="background:#4A6FA5" onclick="brush='#4A6FA5'"></button>
+            <button class="swatch" style="background:#C9A96E" onclick="brush='#C9A96E'"></button>
+            <button class="ghost" onclick="clearCanvas()">清除</button>
+            <button class="primary" onclick="saveCanvas()">保存手绘</button>
+          </div>
+          <canvas id="drawCanvas" class="canvas" width="1000" height="420"></canvas>
+        </div>
+        <div id="trainColoring" class="card hidden">
+          <div class="coloring-layout">
+            <div>
+              <h3>选择线稿</h3>
+              <p class="muted">选一张瓦当纹样线稿，再到右侧画布上直接涂彩。</p>
+              <div id="lineArtList" class="lineart-list"></div>
+            </div>
+            <div>
+              <div class="section-head" style="margin-bottom:10px">
+                <div>
+                  <span class="badge">在线涂彩</span>
+                  <h3 id="lineArtTitle">瓦当纹样线稿</h3>
+                </div>
+                <p id="lineArtDesc" class="muted">黑色线稿会压在颜色上方，涂色时不用担心盖住轮廓。</p>
+              </div>
+              <div class="coloring-canvas-wrap">
+                <canvas id="colorPaintCanvas" width="900" height="900"></canvas>
+                <img id="lineArtOverlay" alt="瓦当纹样线稿">
+              </div>
+              <div class="controls">
+                <span class="muted">颜色</span>
+                <button class="swatch" style="background:#C8553D" onclick="setColoringBrush('#C8553D')"></button>
+                <button class="swatch" style="background:#4A6FA5" onclick="setColoringBrush('#4A6FA5')"></button>
+                <button class="swatch" style="background:#C9A96E" onclick="setColoringBrush('#C9A96E')"></button>
+                <button class="swatch" style="background:#5B8C5A" onclick="setColoringBrush('#5B8C5A')"></button>
+                <button class="swatch" style="background:#8B5E3C" onclick="setColoringBrush('#8B5E3C')"></button>
+                <button class="swatch" style="background:#111" onclick="setColoringBrush('#111111')"></button>
+                <label class="muted">笔刷 <input id="colorBrushSize" class="range" type="range" min="8" max="64" value="26" oninput="setColoringBrushSize(this.value)"></label>
+                <button class="ghost" onclick="setColoringEraser()">橡皮</button>
+                <button class="ghost" onclick="clearLineArtColoring()">清空</button>
+                <button class="primary" onclick="saveLineArtColoring()">保存涂彩作品</button>
+              </div>
+              <p id="lineArtStatus" class="hint">选择颜色后，在画布上按住拖动即可涂彩。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <main id="teacher" class="hidden">
+    <section class="hero">
+      <div class="wrap">
+        <span class="badge">教师工作台</span>
+        <h1>智能备课助手</h1>
+        <p>选择年级、课时、主题和教学风格，生成本地离线课件。</p>
+      </div>
+    </section>
+    <section id="teacherGenerate" class="section">
+      <div class="wrap split">
+        <div class="card form">
+          <h2>生成条件</h2>
+          <label>年级<select id="grade"><option>一年级</option><option>二年级</option><option>三年级</option><option>四年级</option><option selected>五年级</option><option>六年级</option></select></label>
+          <label>课时<select id="period"><option>1课时</option><option selected>2课时</option><option>3课时</option></select></label>
+          <label>教学主题<select id="topic"><option value="认识瓦当">认识瓦当</option><option value="瓦当纹样初识">瓦当纹样初识</option><option value="屋顶小神兽">屋顶小神兽</option><option value="纹样会说话">纹样会说话</option><option value="四神瓦当" selected>四神瓦当</option><option value="瓦作营造与守护">瓦作营造与守护</option></select></label>
+          <label>教学风格<select id="style"><option>生动活泼</option><option>互动探究</option><option selected>情境体验</option><option>严谨专业</option></select></label>
+          <div class="actions">
+            <button class="primary" onclick="openGeneratedPpt()">生成并打开PPT</button>
+            <button class="primary" onclick="openGeneratedLesson()">生成并打开教案</button>
+            <button class="ghost" onclick="presetPackage('g1-1-wadang')">认识瓦当</button>
+            <button class="ghost" onclick="presetPackage('g5-2-sishen')">四神瓦当</button>
+            <button class="ghost" onclick="presetPackage('g6-3-build')">瓦作营造</button>
+          </div>
+        </div>
+        <div class="card">
+          <div id="planOut"><h2>等待生成</h2><p class="muted">点击左侧“生成并打开PPT”。</p></div>
+          <div class="actions">
+            <button class="primary" onclick="downloadPlan()">下载教案</button>
+            <button class="primary" onclick="openGeneratedPpt()">打开PPT</button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="teacherResults" class="section">
+      <div class="wrap">
+        <div class="section-head">
+          <div><span class="badge">本机记录</span><h2>学生小测试结果</h2></div>
+          <p class="muted">结果只保存在当前电脑当前浏览器里；不联网、不上传，换电脑或换浏览器不会自动同步。</p>
+        </div>
+        <div class="card">
+          <div class="actions" style="margin-bottom:14px">
+            <button class="primary" onclick="renderQuizResults()">刷新结果</button>
+            <button class="ghost" onclick="exportQuizResults()">导出CSV</button>
+            <button class="ghost" onclick="clearQuizResults()">清空本机记录</button>
+          </div>
+          <div id="quizResultsBody" class="muted">暂无测试结果。</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="videoModal" class="modal" onclick="closeVideo(event)">
+    <div class="panel" onclick="event.stopPropagation()">
+      <div class="panel-head"><strong id="modalTitle">视频</strong><button class="ghost close-btn" onclick="closeVideo()">关闭</button></div>
+      <div class="panel-body">
+        <div class="fake-video" id="videoBox"></div>
+        <p id="modalDesc" class="muted"></p>
+        <div id="videoFallback" class="video-actions"></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="quizModal" class="modal" onclick="closeQuiz(event)">
+    <div class="panel" onclick="event.stopPropagation()">
+      <div class="panel-head"><strong id="quizTitle">小测试</strong><button class="ghost close-btn" onclick="closeQuiz()">关闭</button></div>
+      <div class="panel-body">
+        <div id="quizBody"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("error", event => {
+      if (event.target instanceof HTMLImageElement) event.target.style.visibility = "hidden";
+    }, true);
+    document.addEventListener("load", event => {
+      if (event.target instanceof HTMLImageElement) event.target.style.visibility = "";
+    }, true);
+    const videoSets = {
+      zh: {
+        label: "中文版",
+        status: "中文兼容版 MP4，适合学生直接观看",
+        note: "当前使用：中文兼容版。如内嵌播放器空白或无法开始，请点下方“直接打开兼容版”。",
+        selfCheckFolder: "videos-web",
+        items: [
+          {
+                "title": "瓦当简史",
+                "desc": "认识瓦当的基本概念和屋檐前端的功能。",
+                "src": "videos-web/wadang-history.mp4",
+                "thumb": "video-thumbs/wadang-history.png",
+                "duration": "3:39"
+          },
+          {
+                "title": "飞檐瑞兽",
+                "desc": "通过瑞兽形象理解守护、吉祥与威仪。",
+                "src": "videos-web/suanni.mp4",
+                "thumb": "video-thumbs/suanni.png",
+                "duration": "2:52"
+          },
+          {
+                "title": "滴水瓦",
+                "desc": "认识滴水瓦的形制、装饰和屋檐排水作用。",
+                "src": "videos-web/wazuo.mp4",
+                "thumb": "video-thumbs/wazuo.png",
+                "duration": "5:35"
+          },
+          {
+                "title": "瓦钉与屋面构件",
+                "desc": "认识瓦钉等屋面小构件的用途。",
+                "src": "videos-web/wading.mp4",
+                "thumb": "video-thumbs/wading.png",
+                "duration": "2:50"
+          },
+          {
+                "title": "姜太公楼·套兽·筒瓦",
+                "desc": "姜太公题材、套兽守护、筒瓦形制三课合并视频。",
+                "src": "videos-web/jiangtaigong-taoshou-tongwa.mp4",
+                "thumb": "video-thumbs/jiangtaigong-taoshou-tongwa.png",
+                "duration": "10:46"
+          },
+          {
+                "title": "小式瓦作·御极之龙·镇煞",
+                "desc": "小式瓦作、龙纹礼制、狮兽镇煞三课合并视频。",
+                "src": "videos-web/xiaoshi-yuji-zhensha.mp4",
+                "thumb": "video-thumbs/xiaoshi-yuji-zhensha.png",
+                "duration": "10:30"
+          },
+          {
+                "title": "百鸟朝凤·瓦作万卷·小青瓦",
+                "desc": "凤鸟祥瑞、瓦作知识、小青瓦工艺三课合并视频。",
+                "src": "videos-web/bainiao-wazuo-xiaoqingwa.mp4",
+                "thumb": "video-thumbs/bainiao-wazuo-xiaoqingwa.png",
+                "duration": "9:48"
+          }
+        ]
+      },
+      en: {
+        label: "英文版",
+        status: "英文加字幕版 MP4，和中文版同主题对应",
+        note: "当前使用：英文加字幕版。如内嵌播放器空白或无法开始，请点下方“直接打开兼容版”。",
+        selfCheckFolder: "videos-web-en",
+        items: [
+          {
+                "title": "瓦当简史",
+                "desc": "英文加字幕版：认识瓦当的基本概念和屋檐前端的功能。",
+                "src": "videos-web-en/wadang-history.mp4",
+                "thumb": "video-thumbs-en/wadang-history.png",
+                "duration": "5:01"
+          },
+          {
+                "title": "狻猊与瑞兽瓦当",
+                "desc": "英文加字幕版：通过瑞兽形象理解守护、吉祥与威仪。",
+                "src": "videos-web-en/suanni.mp4",
+                "thumb": "video-thumbs-en/suanni.png",
+                "duration": "4:16"
+          },
+          {
+                "title": "瓦作工艺入门",
+                "desc": "英文加字幕版：从瓦作构件与屋顶系统认识传统营造智慧。",
+                "src": "videos-web-en/wazuo.mp4",
+                "thumb": "video-thumbs-en/wazuo.png",
+                "duration": "4:05"
+          },
+          {
+                "title": "瓦钉与屋面构件",
+                "desc": "英文加字幕版：认识瓦钉等屋面小构件的用途。",
+                "src": "videos-web-en/wading.mp4",
+                "thumb": "video-thumbs-en/wading.png",
+                "duration": "2:34"
+          },
+          {
+                "title": "姜太公楼·套兽·筒瓦",
+                "desc": "英文加字幕版：姜太公题材、套兽护梁、筒瓦防护三课合并视频。",
+                "src": "videos-web-en/jiangtaigong-taoshou-tongwa.mp4",
+                "thumb": "video-thumbs-en/jiangtaigong-taoshou-tongwa.png",
+                "duration": "10:21"
+          },
+          {
+                "title": "小式瓦作·御极之龙·镇煞",
+                "desc": "英文加字幕版：小式瓦作、龙纹礼制、狮兽镇煞三课合并视频。",
+                "src": "videos-web-en/xiaoshi-yuji-zhensha.mp4",
+                "thumb": "video-thumbs-en/xiaoshi-yuji-zhensha.png",
+                "duration": "13:52"
+          },
+          {
+                "title": "百鸟朝凤·瓦作万卷·小青瓦",
+                "desc": "英文加字幕版：凤鸟祥瑞、瓦作知识、小青瓦工艺三课合并视频。",
+                "src": "videos-web-en/bainiao-wazuo-xiaoqingwa.mp4",
+                "thumb": "video-thumbs-en/bainiao-wazuo-xiaoqingwa.png",
+                "duration": "13:15"
+          }
+        ]
+      }
+    };
+    let activeVideoLang = localStorage.getItem("wazuoVideoLang") || "zh";
+    function currentVideoSet(){ return videoSets[activeVideoLang] || videoSets.zh; }
+    function currentVideos(){ return currentVideoSet().items; }
+    const videoQuizzes = [
+      {
+            "questions": [
+                  {
+                        "q": "瓦当通常安装在古建筑屋顶的哪个位置？",
+                        "options": [
+                              "屋檐最前端",
+                              "屋脊正中央",
+                              "墙面下方"
+                        ],
+                        "answer": 0,
+                        "explain": "瓦当位于檐口前端，遮挡椽头并保护屋檐。"
+                  },
+                  {
+                        "q": "瓦当最直接保护的是屋檐处的什么部位？",
+                        "options": [
+                              "椽头和瓦端",
+                              "地砖边缘",
+                              "窗棂纸面"
+                        ],
+                        "answer": 0,
+                        "explain": "瓦当安装在檐口，可遮护椽头和瓦端，减少风雨侵蚀。"
+                  },
+                  {
+                        "q": "瓦当除了保护屋檐，还常承担什么作用？",
+                        "options": [
+                              "装饰与寄寓祝福",
+                              "测量时间",
+                              "储存粮食"
+                        ],
+                        "answer": 0,
+                        "explain": "瓦当常刻有纹样和文字，兼具审美与文化寓意。"
+                  },
+                  {
+                        "q": "认识瓦当时，最适合先观察哪两点？",
+                        "options": [
+                              "位置和形状",
+                              "价格和重量",
+                              "天气和温度"
+                        ],
+                        "answer": 0,
+                        "explain": "先看它在屋檐的位置，再看圆形、半圆等形态。"
+                  },
+                  {
+                        "q": "瓦当上的纹样和文字常能帮助我们了解什么？",
+                        "options": [
+                              "古人的审美和愿望",
+                              "现代电器的型号",
+                              "当天的午餐菜单"
+                        ],
+                        "answer": 0,
+                        "explain": "纹样、文字会反映古人的审美趣味、吉祥观念和建筑文化。"
+                  },
+                  {
+                        "q": "如果要判断一个构件是不是瓦当，最该把它放到哪里去理解？",
+                        "options": [
+                              "屋顶檐口系统中",
+                              "课桌抽屉里面",
+                              "运动场跑道上"
+                        ],
+                        "answer": 0,
+                        "explain": "瓦当不是孤立的小圆片，要结合屋顶檐口的位置和功能来判断。"
+                  },
+                  {
+                        "q": "圆形瓦当给屋檐带来的视觉效果更接近哪一种？",
+                        "options": [
+                              "整齐连续的装饰节奏",
+                              "杂乱堆放的工具",
+                              "临时贴上的纸条"
+                        ],
+                        "answer": 0,
+                        "explain": "瓦当沿檐口重复排列，会形成整齐、有节奏的装饰效果。"
+                  },
+                  {
+                        "q": "学习瓦当简史时，比较完整的认识顺序是？",
+                        "options": [
+                              "先知道位置功能，再观察纹样寓意",
+                              "只背一个名字",
+                              "只看颜色不看用途"
+                        ],
+                        "answer": 0,
+                        "explain": "先理解瓦当在哪里、做什么，再看纹样和文化含义，认识会更完整。"
+                  }
+            ]
+      },
+      {
+            "questions": [
+                  {
+                        "q": "狻猊常被理解为哪类形象？",
+                        "options": [
+                              "瑞兽守护形象",
+                              "普通农具",
+                              "水井构件"
+                        ],
+                        "answer": 0,
+                        "explain": "狻猊属于传统瑞兽形象，常与守护、威仪相关。"
+                  },
+                  {
+                        "q": "瑞兽纹样放在建筑上，主要表达什么愿望？",
+                        "options": [
+                              "镇护平安",
+                              "增加屋顶重量",
+                              "方便记账"
+                        ],
+                        "answer": 0,
+                        "explain": "瑞兽纹样常寄托镇宅、避邪、祈福的愿望。"
+                  },
+                  {
+                        "q": "观察瑞兽瓦当时，可以重点看什么？",
+                        "options": [
+                              "姿态、爪牙和线条",
+                              "桌椅摆放",
+                              "纸张厚度"
+                        ],
+                        "answer": 0,
+                        "explain": "瑞兽的动态、神态和纹饰线条能提示寓意。"
+                  },
+                  {
+                        "q": "瑞兽形象常给建筑增加哪种感觉？",
+                        "options": [
+                              "庄重威严",
+                              "透明轻飘",
+                              "机械冰冷"
+                        ],
+                        "answer": 0,
+                        "explain": "瑞兽常通过昂首、张口、卷毛等造型表现守护与威严。"
+                  },
+                  {
+                        "q": "判断瑞兽纹样寓意时，哪种做法更合适？",
+                        "options": [
+                              "结合形象、位置和传统寓意一起看",
+                              "只看它是不是很大",
+                              "只看背景颜色"
+                        ],
+                        "answer": 0,
+                        "explain": "瑞兽寓意要结合造型特征、建筑位置和传统文化来理解。"
+                  },
+                  {
+                        "q": "狻猊、狮兽这类形象常和哪类观念联系在一起？",
+                        "options": [
+                              "避邪、镇守、祈福",
+                              "计算面积",
+                              "种植庄稼"
+                        ],
+                        "answer": 0,
+                        "explain": "瑞兽形象常被赋予守护空间、带来吉祥的文化含义。"
+                  },
+                  {
+                        "q": "制作或临摹瑞兽瓦当时，哪一项最能表现神态？",
+                        "options": [
+                              "眼睛、口部和身体姿势",
+                              "尺子长度",
+                              "纸张页码"
+                        ],
+                        "answer": 0,
+                        "explain": "瑞兽的神态通常通过眼口、身体动态和线条力量表现出来。"
+                  },
+                  {
+                        "q": "瑞兽瓦当和普通装饰图案相比，更突出的特点是？",
+                        "options": [
+                              "既有装饰性又有守护寓意",
+                              "只能用来计数",
+                              "没有任何文化含义"
+                        ],
+                        "answer": 0,
+                        "explain": "瑞兽瓦当不仅好看，也承载镇护、吉祥等传统寓意。"
+                  }
+            ]
+      },
+      {
+            "questions": [
+                  {
+                        "q": "滴水瓦通常安装在屋顶的哪个位置？",
+                        "options": [
+                              "屋檐边缘",
+                              "教室地面",
+                              "门把手上"
+                        ],
+                        "answer": 0,
+                        "explain": "滴水瓦多位于屋檐边缘，帮助屋面雨水顺势滴落。"
+                  },
+                  {
+                        "q": "滴水瓦最直接的功能是什么？",
+                        "options": [
+                              "引导雨水、保护檐口",
+                              "存放书本",
+                              "测量时间"
+                        ],
+                        "answer": 0,
+                        "explain": "滴水瓦能把雨水导离屋檐，减少雨水回流和侵蚀。"
+                  },
+                  {
+                        "q": "滴水瓦为什么常带有纹样装饰？",
+                        "options": [
+                              "兼具实用和审美寓意",
+                              "为了遮住文字",
+                              "为了让瓦不能排水"
+                        ],
+                        "answer": 0,
+                        "explain": "传统瓦件常把排水、防护功能和纹样审美结合在一起。"
+                  },
+                  {
+                        "q": "观察滴水瓦时，哪一项最能说明它的功能？",
+                        "options": [
+                              "边缘形态和与屋檐的关系",
+                              "课桌颜色",
+                              "书包大小"
+                        ],
+                        "answer": 0,
+                        "explain": "滴水瓦要结合檐口位置、边缘造型和排水方向来理解。"
+                  },
+                  {
+                        "q": "滴水瓦上的莲花、如意等纹样常表达什么？",
+                        "options": [
+                              "吉祥、美好和守护愿望",
+                              "现代交通规则",
+                              "天气温度"
+                        ],
+                        "answer": 0,
+                        "explain": "瓦件纹样常承载吉祥寓意，让建筑细部更有文化意味。"
+                  },
+                  {
+                        "q": "滴水瓦和瓦当一样，学习时都应该放到哪里理解？",
+                        "options": [
+                              "屋顶檐口系统中",
+                              "抽屉里面",
+                              "篮球场中央"
+                        ],
+                        "answer": 0,
+                        "explain": "滴水瓦、瓦当都不是孤立图案，要结合屋顶位置和功能观察。"
+                  },
+                  {
+                        "q": "滴水瓦的形状设计和屋面排水有什么关系？",
+                        "options": [
+                              "帮助雨水顺着檐口落下",
+                              "让雨水停在屋顶",
+                              "让屋面没有坡度"
+                        ],
+                        "answer": 0,
+                        "explain": "滴水瓦的下沿和形制会影响雨水离开檐口的方式。"
+                  },
+                  {
+                        "q": "介绍滴水瓦时，比较完整的关键词是？",
+                        "options": [
+                              "檐口、排水、纹样、寓意",
+                              "跑步、跳远、投篮",
+                              "键盘、鼠标、屏幕"
+                        ],
+                        "answer": 0,
+                        "explain": "滴水瓦既是屋檐排水构件，也常通过纹样表达审美和祝福。"
+                  }
+            ]
+      },
+      {
+            "questions": [
+                  {
+                        "q": "瓦钉这类屋面小构件主要用于什么？",
+                        "options": [
+                              "固定或辅助连接瓦件",
+                              "书写文章",
+                              "点燃灯火"
+                        ],
+                        "answer": 0,
+                        "explain": "瓦钉等构件可帮助屋面瓦件稳定固定。"
+                  },
+                  {
+                        "q": "认识屋面构件时，不应只看外形，还要看什么？",
+                        "options": [
+                              "在屋顶中的功能",
+                              "谁先拿到",
+                              "颜色是否最亮"
+                        ],
+                        "answer": 0,
+                        "explain": "构件要放回屋顶系统中理解功能。"
+                  },
+                  {
+                        "q": "屋面小构件虽然小，为什么重要？",
+                        "options": [
+                              "关系到屋顶稳固和细部美感",
+                              "能替代整座房子",
+                              "只负责计数"
+                        ],
+                        "answer": 0,
+                        "explain": "小构件承担连接、固定、装饰等细部作用。"
+                  },
+                  {
+                        "q": "瓦钉通常不适合被理解成什么？",
+                        "options": [
+                              "和屋面无关的玩具零件",
+                              "屋面系统的小构件",
+                              "帮助固定瓦件的部件"
+                        ],
+                        "answer": 0,
+                        "explain": "瓦钉属于屋面构件，应结合屋顶系统认识。"
+                  },
+                  {
+                        "q": "观察瓦钉时，哪一项更能说明它的用途？",
+                        "options": [
+                              "它和周围瓦件怎样连接",
+                              "它离书包有多远",
+                              "它是不是能唱歌"
+                        ],
+                        "answer": 0,
+                        "explain": "构件之间的连接方式能直接说明固定和组合功能。"
+                  },
+                  {
+                        "q": "屋面构件共同工作，最重要的目标之一是？",
+                        "options": [
+                              "让屋顶排水、防护和稳定",
+                              "让房间变成水池",
+                              "让瓦件不能排列"
+                        ],
+                        "answer": 0,
+                        "explain": "屋面构件需要协同完成遮雨、排水、固定和保护。"
+                  },
+                  {
+                        "q": "学习瓦钉与屋面构件时，比较好的观察方法是？",
+                        "options": [
+                              "从单个构件看到整体屋面",
+                              "只记一个名字",
+                              "完全不看安装位置"
+                        ],
+                        "answer": 0,
+                        "explain": "小构件的意义要放在整体屋面结构中才能看清楚。"
+                  },
+                  {
+                        "q": "瓦钉等细部构件体现了古建筑怎样的特点？",
+                        "options": [
+                              "功能和美感常常结合在一起",
+                              "只要大构件不要小构件",
+                              "装饰一定没有用途"
+                        ],
+                        "answer": 0,
+                        "explain": "古建筑细部常同时承担实用功能和装饰效果。"
+                  }
+            ]
+      },
+      {
+            "questions": [
+                  {
+                        "q": "姜太公楼、套兽、筒瓦这组内容共同指向什么主题？",
+                        "options": [
+                              "屋顶构件与守护寓意",
+                              "河流航运",
+                              "农田灌溉"
+                        ],
+                        "answer": 0,
+                        "explain": "三段内容都围绕屋顶瓦作构件、空间守护和传统建筑细部。"
+                  },
+                  {
+                        "q": "筒瓦在屋面中常与哪类瓦件配合使用？",
+                        "options": [
+                              "板瓦",
+                              "窗纸",
+                              "木桌"
+                        ],
+                        "answer": 0,
+                        "explain": "筒瓦常压住板瓦接缝，帮助屋面排水和防护。"
+                  },
+                  {
+                        "q": "套兽一般更强调哪种作用？",
+                        "options": [
+                              "保护梁头和镇护屋角",
+                              "盛放食物",
+                              "记录成绩"
+                        ],
+                        "answer": 0,
+                        "explain": "套兽常套护仔角梁头，兼具保护和装饰寓意。"
+                  },
+                  {
+                        "q": "姜太公题材放到屋顶装饰中，常和哪种观念有关？",
+                        "options": [
+                              "镇宅守护",
+                              "测量身高",
+                              "制作乐器"
+                        ],
+                        "answer": 0,
+                        "explain": "姜太公题材常被赋予镇宅、避邪、护佑建筑的传统寓意。"
+                  },
+                  {
+                        "q": "筒瓦的弧形形态主要有助于什么？",
+                        "options": [
+                              "覆盖接缝和引导雨水",
+                              "夹住书页",
+                              "装满粮食"
+                        ],
+                        "answer": 0,
+                        "explain": "筒瓦呈弧形，常用于覆盖瓦缝，增强屋面的防水效果。"
+                  },
+                  {
+                        "q": "套兽通常安装在建筑屋顶的哪些细部位置更常见？",
+                        "options": [
+                              "角梁、屋角等端部",
+                              "课桌桌面",
+                              "井底中央"
+                        ],
+                        "answer": 0,
+                        "explain": "套兽多与屋顶角部、梁头等端部保护和装饰相关。"
+                  },
+                  {
+                        "q": "这组视频中，“构件”和“寓意”的关系可以怎样理解？",
+                        "options": [
+                              "构件有实际功能，也承载文化愿望",
+                              "构件只负责讲故事",
+                              "寓意一定和建筑无关"
+                        ],
+                        "answer": 0,
+                        "explain": "屋顶构件既要服务建筑，也常通过题材表达守护、吉祥等愿望。"
+                  },
+                  {
+                        "q": "如果做课堂汇报，介绍这组内容最合理的关键词是？",
+                        "options": [
+                              "镇宅、护梁、屋脊、屋顶系统",
+                              "游泳、跑步、篮球、足球",
+                              "算盘、账本、毛笔、砚台"
+                        ],
+                        "answer": 0,
+                        "explain": "姜太公、套兽、筒瓦分别对应守护寓意、端部保护和屋面防水。"
+                  }
+            ]
+      },
+      {
+            "questions": [
+                  {
+                        "q": "御极之龙在传统建筑装饰中常象征什么？",
+                        "options": [
+                              "尊贵与祥瑞",
+                              "普通门锁",
+                              "农田边界"
+                        ],
+                        "answer": 0,
+                        "explain": "龙纹常与尊贵、祥瑞、礼制联系在一起。"
+                  },
+                  {
+                        "q": "镇煞类狮兽形象主要表达什么？",
+                        "options": [
+                              "驱邪守护",
+                              "计量长度",
+                              "搬运泥土"
+                        ],
+                        "answer": 0,
+                        "explain": "狮兽形象常用于镇护空间、表达威严。"
+                  },
+                  {
+                        "q": "小式瓦作更适合从哪个角度理解？",
+                        "options": [
+                              "建筑等级、尺度与做法",
+                              "水果种类",
+                              "书包重量"
+                        ],
+                        "answer": 0,
+                        "explain": "小式瓦作涉及建筑尺度、等级和构件做法。"
+                  },
+                  {
+                        "q": "龙纹在瓦作和建筑装饰中，通常不应被看成什么？",
+                        "options": [
+                              "没有意义的随手涂鸦",
+                              "带有礼制和祥瑞意味的纹样",
+                              "需要观察线条和姿态的图案"
+                        ],
+                        "answer": 0,
+                        "explain": "龙纹往往承载尊贵、祥瑞等文化含义，不只是随意图案。"
+                  },
+                  {
+                        "q": "学习小式瓦作时，为什么要关注“尺度”？",
+                        "options": [
+                              "不同建筑等级和做法会影响构件大小",
+                              "尺度和建筑完全无关",
+                              "只为比较谁画得最大"
+                        ],
+                        "answer": 0,
+                        "explain": "瓦作构件的尺寸、比例和做法常与建筑等级和实际需求相关。"
+                  },
+                  {
+                        "q": "镇煞狮兽常通过哪些造型特征表现力量感？",
+                        "options": [
+                              "张口、蹲踞、卷毛和有力姿态",
+                              "透明翅膀",
+                              "直线方格"
+                        ],
+                        "answer": 0,
+                        "explain": "狮兽通过夸张神态和动态造型，表现威严和守护力量。"
+                  },
+                  {
+                        "q": "把小式瓦作、龙纹、镇煞放在一起学习，可以帮助理解什么？",
+                        "options": [
+                              "做法、等级和守护寓意的联系",
+                              "现代交通规则",
+                              "天气预报方法"
+                        ],
+                        "answer": 0,
+                        "explain": "这组内容把瓦作做法、建筑等级和装饰寓意联系起来。"
+                  },
+                  {
+                        "q": "介绍御极之龙时，较完整的表达应包含哪两方面？",
+                        "options": [
+                              "造型特征和文化象征",
+                              "价格和包装",
+                              "声音和气味"
+                        ],
+                        "answer": 0,
+                        "explain": "既要看龙纹的形态线条，也要说明它的尊贵、祥瑞等象征。"
+                  }
+            ]
+      },
+      {
+            "questions": [
+                  {
+                        "q": "百鸟朝凤纹样通常寓意什么？",
+                        "options": [
+                              "祥瑞与盛世来仪",
+                              "暴雨预报",
+                              "计时工具"
+                        ],
+                        "answer": 0,
+                        "explain": "凤鸟纹样常象征祥瑞、美德和太平愿望。"
+                  },
+                  {
+                        "q": "小青瓦常给人怎样的屋面印象？",
+                        "options": [
+                              "朴素、细密、适合民居",
+                              "透明发光",
+                              "金属机械"
+                        ],
+                        "answer": 0,
+                        "explain": "小青瓦常见于传统民居屋面，灰青质朴。"
+                  },
+                  {
+                        "q": "“瓦作万卷”更强调学习瓦作的哪一点？",
+                        "options": [
+                              "知识系统丰富，需要分类理解",
+                              "只看一个名字即可",
+                              "完全不需要观察"
+                        ],
+                        "answer": 0,
+                        "explain": "瓦作包含构件、工艺、纹样和文化，需要系统整理。"
+                  },
+                  {
+                        "q": "百鸟朝凤画面中，凤通常处于怎样的视觉地位？",
+                        "options": [
+                              "中心或主要形象",
+                              "完全看不见",
+                              "只在屋檐背面"
+                        ],
+                        "answer": 0,
+                        "explain": "百鸟朝凤常突出凤的中心地位，表达群鸟来仪的祥瑞场景。"
+                  },
+                  {
+                        "q": "小青瓦屋面常见的颜色特征更接近哪一种？",
+                        "options": [
+                              "灰青、沉稳、质朴",
+                              "透明无色",
+                              "荧光粉"
+                        ],
+                        "answer": 0,
+                        "explain": "小青瓦多呈灰青色，形成质朴、细密的传统屋面效果。"
+                  },
+                  {
+                        "q": "整理“瓦作万卷”的知识时，哪种分类更有帮助？",
+                        "options": [
+                              "按构件、工艺、纹样、寓意分类",
+                              "按午饭、晚饭分类",
+                              "按鞋码分类"
+                        ],
+                        "answer": 0,
+                        "explain": "瓦作知识庞杂，按构件、工艺、纹样和文化寓意整理更清楚。"
+                  },
+                  {
+                        "q": "百鸟朝凤和小青瓦放在一起学习，能看到瓦作的哪两面？",
+                        "options": [
+                              "纹样寓意和屋面工艺",
+                              "体育比赛和音乐节奏",
+                              "数字计算和英语单词"
+                        ],
+                        "answer": 0,
+                        "explain": "凤鸟纹样体现文化寓意，小青瓦体现屋面材料与工艺。"
+                  },
+                  {
+                        "q": "如果给小青瓦屋面做观察记录，最该记录哪一组内容？",
+                        "options": [
+                              "颜色、排列、搭接和整体屋面效果",
+                              "铅笔型号",
+                              "教室座位号"
+                        ],
+                        "answer": 0,
+                        "explain": "小青瓦要结合颜色质感、排列方式、搭接关系和屋面效果观察。"
+                  }
+            ]
+      }
+];
+    const patterns = [
+      [
+            "秦羊角卷云纹瓦当",
+            "云纹类",
+            "#C8553D",
+            "",
+            "pattern-library-docx-images/docx-pattern-01.jpeg",
+            "云纹瓦当在秦代颇为流行，与秦人求仙升天的思想有着密切关系。"
+      ],
+      [
+            "秦四方连续连云瓦当",
+            "云纹类",
+            "#C8553D",
+            "",
+            "pattern-library-docx-images/docx-pattern-02.png",
+            "四方连续的云纹构图寓意深远。"
+      ],
+      [
+            "汉双勾云纹瓦当",
+            "云纹类",
+            "#C8553D",
+            "",
+            "pattern-library-docx-images/docx-pattern-03.jpeg",
+            "云纹瓦当在汉代颇为流行，延续了秦代以来求仙升天的思想传统。"
+      ],
+      [
+            "汉回旋流云瓦当",
+            "云纹类",
+            "#C8553D",
+            "",
+            "pattern-library-docx-images/docx-pattern-04.jpeg",
+            "回旋流云纹瓦当延续了秦汉以来以云纹象天的传统理念。"
+      ],
+      [
+            "汉涡旋云纹瓦当",
+            "云纹类",
+            "#C8553D",
+            "",
+            "pattern-library-docx-images/docx-pattern-05.jpeg",
+            "涡旋纹（涡纹）在秦汉瓦当中具有深厚的文化内涵。"
+      ],
+      [
+            "魏晋垂云纹瓦当",
+            "云纹类",
+            "#C8553D",
+            "",
+            "pattern-library-docx-images/docx-pattern-06.jpeg",
+            "垂云纹（流云纹）延续了秦汉以来以云纹象天的传统理念。"
+      ],
+      [
+            "秦简化连云瓦当",
+            "云纹类",
+            "#C8553D",
+            "",
+            "pattern-library-docx-images/docx-pattern-07.jpeg",
+            "秦代云纹瓦当与秦人求仙升天的思想密切相关。"
+      ],
+      [
+            "南北朝朵云纹瓦当",
+            "云纹类",
+            "#C8553D",
+            "",
+            "pattern-library-docx-images/docx-pattern-08.jpeg",
+            "朵云纹延续了自先秦以来以云纹象天的传统理念。"
+      ],
+      [
+            "秦式大云纹瓦当",
+            "云纹类",
+            "#C8553D",
+            "",
+            "pattern-library-docx-images/docx-pattern-09.jpeg",
+            "秦式大云纹瓦当承载着丰富的文化内涵。"
+      ],
+      [
+            "北魏单瓣莲纹瓦当",
+            "莲花类",
+            "#C9A96E",
+            "",
+            "pattern-library-docx-images/docx-pattern-10.jpeg",
+            "莲花纹瓦当的盛行与北魏佛教的繁荣兴盛密切相关。"
+      ],
+      [
+            "隋八瓣莲花瓦当",
+            "莲花类",
+            "#C9A96E",
+            "",
+            "pattern-library-docx-images/docx-pattern-11.jpeg",
+            "八瓣莲花瓦当的盛行与隋代佛教的极度繁荣密切相关。"
+      ],
+      [
+            "唐宝相莲花复合瓦当",
+            "莲花类",
+            "#C9A96E",
+            "",
+            "pattern-library-docx-images/docx-pattern-12.jpeg",
+            "宝相花由莲花纹发展而来，是佛教圣洁、庄严的象征。"
+      ],
+      [
+            "六朝莲蕊纹瓦当",
+            "莲花类",
+            "#C9A96E",
+            "",
+            "pattern-library-docx-images/docx-pattern-13.jpeg",
+            "莲蕊纹瓦当的盛行与六朝佛教的极度繁荣密切相关。"
+      ],
+      [
+            "唐代多层莲瓣瓦当",
+            "莲花类",
+            "#C9A96E",
+            "",
+            "pattern-library-docx-images/docx-pattern-14.jpeg",
+            "莲花在佛教中被称为“佛门圣花”，寓意清净、圣洁、吉祥。"
+      ],
+      [
+            "龙脊兽",
+            "脊兽类",
+            "#8B5E3C",
+            "",
+            "pattern-library-docx-images/docx-pattern-15.jpeg",
+            "龙为华夏图腾、百兽之尊、皇权象征，龙脊兽高居屋顶屋脊之巅，寓意镇宅安。"
+      ],
+      [
+            "凤脊兽",
+            "脊兽类",
+            "#8B5E3C",
+            "",
+            "pattern-library-docx-images/docx-pattern-16.jpeg",
+            "凤凰象征太平祥瑞、贤德高雅、天下安宁，为上古四灵之一。"
+      ],
+      [
+            "狮子脊兽",
+            "脊兽类",
+            "#8B5E3C",
+            "",
+            "pattern-library-docx-images/docx-pattern-17.jpeg",
+            "狮子为佛门护法瑞兽、百兽之威，象征威严正义、镇煞辟邪。"
+      ],
+      [
+            "天马脊兽",
+            "脊兽类",
+            "#8B5E3C",
+            "",
+            "pattern-library-docx-images/docx-pattern-18.jpeg",
+            "天马象征驰骋天地、通达四方、鹏程万里、疆域辽阔。"
+      ],
+      [
+            "狻猊脊兽",
+            "脊兽类",
+            "#8B5E3C",
+            "",
+            "pattern-library-docx-images/docx-pattern-19.jpeg",
+            "古籍记载狻猊好坐、喜烟火、性沉稳、安静谧。"
+      ],
+      [
+            "行什脊兽",
+            "脊兽类",
+            "#8B5E3C",
+            "",
+            "pattern-library-docx-images/docx-pattern-20.jpeg",
+            "行什手持金刚杵，主镇妖除魔、避雷祛灾、护佑殿宇。"
+      ],
+      [
+            "庑殿顶",
+            "屋顶形制",
+            "#4A6FA5",
+            "",
+            "pattern-library-docx-images/docx-pattern-21.jpeg",
+            "庑殿顶为古建第一等级形制，象征皇权至尊、天下归一、四海臣服。"
+      ],
+      [
+            "歇山顶",
+            "屋顶形制",
+            "#4A6FA5",
+            "",
+            "pattern-library-docx-images/docx-pattern-22.jpeg",
+            "歇山顶等级尊贵、形制中正，象征中庸谦和、礼法有度、尊卑有序、国泰人和。"
+      ],
+      [
+            "硬山顶",
+            "屋顶形制",
+            "#4A6FA5",
+            "",
+            "pattern-library-docx-images/docx-pattern-23.jpeg",
+            "硬山顶质朴简约、内敛踏实，象征百姓安居乐业、安稳平实、守正务实、居家。"
+      ],
+      [
+            "悬山顶",
+            "屋顶形制",
+            "#4A6FA5",
+            "",
+            "pattern-library-docx-images/docx-pattern-24.jpeg",
+            "悬山顶屋檐悬挑、向外舒展，寓意心胸开阔、通达顺遂、遮风挡雨、护佑家宅。"
+      ],
+      [
+            "攒尖顶",
+            "屋顶形制",
+            "#4A6FA5",
+            "",
+            "pattern-library-docx-images/docx-pattern-25.jpeg",
+            "屋面万川归宗、汇聚于顶，寓意天下归一、万众归心、汇聚福气、凝聚祥瑞。"
+      ],
+      [
+            "盝顶",
+            "屋顶形制",
+            "#4A6FA5",
+            "",
+            "pattern-library-docx-images/docx-pattern-26.jpeg",
+            "平顶方平、四向规整，象征四平八稳、天下太平、方正守礼、基业稳固。"
+      ],
+      [
+            "蕉叶纹滴水瓦件",
+            "瓦件类",
+            "#6B6560",
+            "",
+            "pattern-library-docx-images/docx-pattern-27.jpeg",
+            "芭蕉叶片常青舒展、生生不息，象征生机永续、四季常青、福泽绵长、岁岁安。"
+      ],
+      [
+            "如意纹滴水瓦件",
+            "瓦件类",
+            "#6B6560",
+            "",
+            "pattern-library-docx-images/docx-pattern-28.jpeg",
+            "如意纹顾名思义万事如意、顺心吉祥、平安顺遂、吉庆安康。"
+      ],
+      [
+            "莲花纹滴水瓦件",
+            "瓦件类",
+            "#6B6560",
+            "",
+            "pattern-library-docx-images/docx-pattern-29.jpeg",
+            "莲花象征清净高洁、出淤泥而不染、端庄雅致、福慧双全。"
+      ],
+      [
+            "云纹花边瓦件",
+            "瓦件类",
+            "#6B6560",
+            "",
+            "pattern-library-docx-images/docx-pattern-30.jpeg",
+            "祥云连绵不绝、升腾流转，象征祥云瑞气、步步高升、绵延不绝、福运长存。"
+      ],
+      [
+            "秦代饕餮兽面瓦当",
+            "兽面类",
+            "#5C3D2E",
+            "",
+            "pattern-library-docx-images/docx-pattern-31.jpeg",
+            "饕餮为上古瑞兽，主镇煞避凶、统摄四方、威严天下、江山稳固。"
+      ],
+      [
+            "汉代铺首兽面瓦当",
+            "兽面类",
+            "#5C3D2E",
+            "",
+            "pattern-library-docx-images/docx-pattern-32.jpeg",
+            "铺首兽自古为门户守护之兽，主守门镇宅、驱邪避凶、守护宫阙、安宁四方。"
+      ],
+      [
+            "北齐卷边兽面瓦当",
+            "兽面类",
+            "#5C3D2E",
+            "",
+            "pattern-library-docx-images/docx-pattern-33.jpeg",
+            "卷边兽面柔中带刚、温润端庄，寓意调和阴阳、安定北方、民族和合、国泰民。"
+      ],
+      [
+            "北朝小型兽面瓦当",
+            "兽面类",
+            "#5C3D2E",
+            "",
+            "pattern-library-docx-images/docx-pattern-34.jpeg",
+            "小型兽面简约端庄、内敛守正，寓意护佑一方、安定一隅、平安顺遂、守正安。"
+      ],
+      [
+            "隋唐简化兽面瓦当",
+            "兽面类",
+            "#5C3D2E",
+            "",
+            "pattern-library-docx-images/docx-pattern-35.jpeg",
+            "简化兽面素雅端正、大气包容，寓意盛世安宁、海纳百川、平安和顺、天下太。"
+      ],
+      [
+            "汉代青龙纹瓦当",
+            "四神类",
+            "#B5372E",
+            "",
+            "pattern-library-docx-images/docx-pattern-36.jpeg",
+            "青龙为上古四神之首，代表东方、春季、木行，象征生机、权威与祥瑞。"
+      ],
+      [
+            "汉代白虎纹瓦当",
+            "四神类",
+            "#B5372E",
+            "",
+            "pattern-library-docx-images/docx-pattern-37.jpeg",
+            "白虎主西方、秋季、金行，为上古镇煞瑞兽，象征威严勇武、镇宅辟邪、镇守。"
+      ],
+      [
+            "汉代朱雀纹瓦当",
+            "四神类",
+            "#B5372E",
+            "",
+            "pattern-library-docx-images/docx-pattern-38.jpeg",
+            "朱雀主南方、夏季、火行，象征祥瑞太平、文明昌盛、国运兴旺、生生不息。"
+      ],
+      [
+            "汉代玄武纹瓦当",
+            "四神类",
+            "#B5372E",
+            "",
+            "pattern-library-docx-images/docx-pattern-39.jpeg",
+            "玄武主北方、冬季、水位，象征稳固坚守、长寿安宁、基业长青、稳如磐石。"
+      ],
+      [
+            "汉代 “长生无极” 文字瓦当",
+            "文字类",
+            "#2C2825",
+            "",
+            "pattern-library-docx-images/docx-pattern-40.jpeg",
+            "“长生无极”直译即为寿命绵长、生生不息、永续长存、福泽无尽。"
+      ],
+      [
+            "汉代 “长乐未央” 文字瓦当",
+            "文字类",
+            "#2C2825",
+            "",
+            "pattern-library-docx-images/docx-pattern-41.jpeg",
+            "“长乐未央”意为长久喜乐、永无终结、岁岁欢愉、福乐无穷。"
+      ],
+      [
+            "汉代 “富贵未央” 文字瓦当",
+            "文字类",
+            "#2C2825",
+            "",
+            "pattern-library-docx-images/docx-pattern-42.jpeg",
+            "寓意富贵绵长、荣华永续、福禄无穷、尊贵未央。"
+      ],
+      [
+            "汉代 “千秋万岁” 文字瓦当",
+            "文字类",
+            "#2C2825",
+            "",
+            "pattern-library-docx-images/docx-pattern-43.jpeg",
+            "寓意千秋不朽、万岁永昌、江山万古、帝祚长存。"
+      ],
+      [
+            "汉代 “与天无极” 文字瓦当",
+            "文字类",
+            "#2C2825",
+            "",
+            "pattern-library-docx-images/docx-pattern-44.jpeg",
+            "寓意国运同天、无边无尽、与天同寿、基业无极。"
+      ],
+      [
+            "汉代 “上林” 官署瓦当",
+            "文字类",
+            "#2C2825",
+            "",
+            "pattern-library-docx-images/docx-pattern-45.jpeg",
+            "作为皇家专属标识瓦当，象征皇家专属、官署正统、苑囿安宁、皇家独享，代。"
+      ],
+      [
+            "同心圆几何瓦当",
+            "几何类",
+            "#8B7355",
+            "",
+            "pattern-library-docx-images/docx-pattern-46.png",
+            "同心圆寓意\"圆满周全、循环往复\"，象征宇宙圆融、天地有序。"
+      ],
+      [
+            "交错三角纹瓦当",
+            "几何类",
+            "#8B7355",
+            "",
+            "pattern-library-docx-images/docx-pattern-47.png",
+            "交错三角形形似山峦叠嶂，又暗含阴阳交合、刚柔相济之意。"
+      ],
+      [
+            "网格纹瓦当",
+            "几何类",
+            "#8B7355",
+            "",
+            "pattern-library-docx-images/docx-pattern-48.png",
+            "网格纹形似\"井田\"，寓意国土规整、疆域有序。"
+      ],
+      [
+            "菱形几何瓦当",
+            "几何类",
+            "#8B7355",
+            "",
+            "pattern-library-docx-images/docx-pattern-49.png",
+            "菱形形似古钱币\"方孔圆钱\"的方形外廓，寓意财源广进、富贵绵长。"
+      ],
+      [
+            "折线纹瓦当",
+            "几何类",
+            "#8B7355",
+            "",
+            "pattern-library-docx-images/docx-pattern-50.png",
+            "折线连续不断形似\"山脊\"或\"波涛\"，寓意镇守山河、辟邪除灾。"
+      ],
+      [
+            "回纹几何瓦当",
+            "几何类",
+            "#8B7355",
+            "",
+            "pattern-library-docx-images/docx-pattern-51.png",
+            "回纹绵延不绝，寓意\"富贵不断头\"、子孙绵延、福寿绵长。"
+      ],
+      [
+            "鸿雁纹瓦当",
+            "动物纹",
+            "#C8553D",
+            "",
+            "pattern-library-docx-images/docx-pattern-52.png",
+            "鸿雁为候鸟，象征\"守信、传信、长途跋涉\"。"
+      ],
+      [
+            "奔鹿纹瓦当",
+            "动物纹",
+            "#C8553D",
+            "",
+            "pattern-library-docx-images/docx-pattern-53.png",
+            "鹿与\"禄\"谐音，象征福禄长寿、高官厚禄。"
+      ],
+      [
+            "蟾蜍纹瓦当",
+            "动物纹",
+            "#C8553D",
+            "",
+            "pattern-library-docx-images/docx-pattern-54.png",
+            "蟾蜍为月宫神兽，\"嫦娥奔月、玉兔捣药、蟾蜍吐财\"是汉代最流行的月宫神。"
+      ],
+      [
+            "鱼纹瓦当",
+            "动物纹",
+            "#C8553D",
+            "",
+            "pattern-library-docx-images/docx-pattern-55.png",
+            "鱼与\"余\"谐音，寓意\"年年有余、富足有余\"。"
+      ],
+      [
+            "喜鹊纹瓦当",
+            "动物纹",
+            "#C8553D",
+            "",
+            "pattern-library-docx-images/docx-pattern-56.png",
+            "喜鹊为\"报喜之鸟\"，寓意喜事临头、好运将至。"
+      ],
+      [
+            "猛虎纹瓦当",
+            "动物纹",
+            "#C8553D",
+            "",
+            "pattern-library-docx-images/docx-pattern-57.png",
+            "猛虎为\"百兽之王\"，寓意镇宅辟邪、威严赫赫。"
+      ],
+      [
+            "牡丹纹瓦当",
+            "植物纹",
+            "#5B8C5A",
+            "",
+            "pattern-library-docx-images/docx-pattern-58.png",
+            "牡丹素有\"花王\"之称，寓意富贵吉祥、繁荣昌盛。"
+      ],
+      [
+            "梅花纹瓦当",
+            "植物纹",
+            "#5B8C5A",
+            "",
+            "pattern-library-docx-images/docx-pattern-59.png",
+            "梅花被誉为\"花中之君子\"，象征高洁坚韧、凌寒独开。"
+      ],
+      [
+            "萍纹瓦当",
+            "植物纹",
+            "#5B8C5A",
+            "",
+            "pattern-library-docx-images/docx-pattern-60.png",
+            "萍纹形似古钱币\"方孔圆钱\"的简化形态，寓意财源广进、生活富足。"
+      ],
+      [
+            "卷草纹瓦当",
+            "植物纹",
+            "#5B8C5A",
+            "",
+            "pattern-library-docx-images/docx-pattern-61.png",
+            "卷草纹连绵不断，寓意子孙绵延、福寿无疆。"
+      ],
+      [
+            "忍冬纹瓦当",
+            "植物纹",
+            "#5B8C5A",
+            "",
+            "pattern-library-docx-images/docx-pattern-62.png",
+            "忍冬即金银花，凌冬不凋、坚韧顽强，象征\"长寿不老、清廉高洁\"。"
+      ],
+      [
+            "花鸟组合纹瓦当",
+            "植物纹",
+            "#5B8C5A",
+            "",
+            "pattern-library-docx-images/docx-pattern-63.png",
+            "花鸟组合纹寓意\"富贵双全、鸾凤和鸣、百年好合\"。"
+      ]
+];
+    const categories = ["全部", "云纹类", "莲花类", "脊兽类", "屋顶形制", "瓦件类", "兽面类", "四神类", "文字类", "几何类", "动物纹", "植物纹"];
+    const lineArts = [
+      { title: "八瓣莲花纹瓦当", src: "line-art-images/baban-lianhua.jpg", desc: "莲瓣围合成圆，适合练习对称配色。" },
+      { title: "六叶矢纹瓦当", src: "line-art-images/liuye-shiwen.jpg", desc: "叶片与箭形纹交错，适合做冷暖对比。" },
+      { title: "四叶云纹瓦当", src: "line-art-images/siye-yunwen.jpg", desc: "云纹舒展回旋，可以尝试渐变涂彩。" },
+      { title: "四神勾云纹瓦当", src: "line-art-images/sishen-gouyun.jpg", desc: "四神与云气相连，适合分区设色。" },
+      { title: "朱雀纹瓦当", src: "line-art-images/zhuque.jpg", desc: "朱雀羽翼明显，适合红、金、蓝组合。" },
+      { title: "树木双目瓦当纹", src: "line-art-images/shumu-shuangmu.jpg", desc: "纹样结构特别，适合做主题色探索。" },
+      { title: "玄武纹瓦当", src: "line-art-images/xuanwu.jpg", desc: "玄武造型稳重，适合深色和青绿色。" },
+      { title: "玉林篆书吉语瓦当", src: "line-art-images/yulin-jiyu.jpg", desc: "文字瓦当轮廓清晰，适合字形描边涂彩。" },
+      { title: "白虎纹瓦当", src: "line-art-images/baihu.jpg", desc: "白虎姿态有力，适合突出纹样边缘。" },
+      { title: "葵纹瓦当", src: "line-art-images/kuiwen.jpg", desc: "葵瓣放射排列，适合按花瓣分组上色。" },
+      { title: "蟠龙纹瓦当", src: "line-art-images/panlong.jpg", desc: "蟠龙线条丰富，适合细笔刷慢慢涂。" },
+      { title: "长乐未央四字篆书瓦当", src: "line-art-images/changle-weiyang.jpg", desc: "吉语文字庄重，适合红黑金配色。" }
+    ];
+    let gameStep = 0, selectedPattern = patterns[0], selectedSoil = "#C9A96E";
+    let rubbingStep = 0, rubbingDots = 0, brush = "#2C2825", drawing = false, currentArea = "bg";
+    let paintState = { bg:"#F7F3ED", rim:"#C9A96E", line:"#C8553D", center:"#4A6FA5" };
+    let currentLineArtIndex = 0, coloringBrush = "#C8553D", coloringBrushSize = 26, lineArtPainting = false, coloringEraser = false, coloringReady = false, lastColorPoint = null;
+    let currentPlan = "";
+
+    function patternPath(p) {
+      return p[3] || "M50 20 Q65 15 66 30 Q58 43 48 34 Q38 25 28 38 Q42 40 50 20";
+    }
+    function medallion(p, size=130, fill="none") {
+      if (p[4]) return `<img src="${p[4]}" alt="${p[0]}" style="width:${size}px;height:${size}px;object-fit:cover;border-radius:50%;border:1px solid ${p[2]}55;background:#F7F3ED">`;
+      return `<svg width="${size}" height="${size}" viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="46" fill="#fff8" stroke="${p[2]}" stroke-width="2"/>
+        <circle cx="50" cy="50" r="37" fill="none" stroke="${p[2]}" stroke-opacity=".28"/>
+        <path d="${patternPath(p)}" fill="${fill}" stroke="${p[2]}" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="50" cy="50" r="6" fill="${p[2]}" opacity=".8"/>
+      </svg>`;
+    }
+    const navItems = {
+      student: [
+        ["videos", "教学视频"],
+        ["patterns", "纹样库"],
+        ["game", "制瓦工坊"],
+        ["training", "实操训练"]
+      ],
+      teacher: [
+        ["teacherGenerate", "生成教案/PPT"],
+        ["teacherResults", "查看学生测评结果"]
+      ]
+    };
+    let activeView = "student";
+    function setSectionNav(id) {
+      document.querySelectorAll(".nav button").forEach(b=>b.classList.toggle("active", b.dataset.section === id));
+    }
+    function renderTopNav(view, activeId) {
+      activeView = view;
+      const nav = document.querySelector(".nav");
+      const items = navItems[view] || navItems.student;
+      const current = activeId || items[0][0];
+      nav.innerHTML = items.map(([id, label]) => `<button type="button" class="${current === id ? "active" : ""}" data-section="${id}">${label}</button>`).join("");
+      nav.querySelectorAll("button").forEach(btn => btn.addEventListener("click", () => {
+        if (view === "teacher") showTeacherSection(btn.dataset.section);
+        else showStudentSection(btn.dataset.section);
+      }));
+    }
+    function updateTopbarState(){
+      document.querySelector(".topbar").classList.toggle("is-scrolled", window.scrollY > 36);
+    }
+    function scrollToId(id){
+      const target = document.getElementById(id);
+      if (!target) return;
+      setSectionNav(id);
+      target.scrollIntoView({behavior:"smooth", block:"start"});
+    }
+    function showStudentSection(id="videos") {
+      document.getElementById("student").classList.remove("hidden");
+      document.getElementById("teacher").classList.add("hidden");
+      document.querySelectorAll(".viewnav button").forEach(b=>b.classList.toggle("active", b.dataset.view === "student"));
+      renderTopNav("student", id);
+      scrollToId(id);
+    }
+    function showTeacherSection(id="teacherGenerate") {
+      document.getElementById("student").classList.add("hidden");
+      document.getElementById("teacher").classList.remove("hidden");
+      document.querySelectorAll(".viewnav button").forEach(b=>b.classList.toggle("active", b.dataset.view === "teacher"));
+      renderTopNav("teacher", id);
+      scrollToId(id);
+      if (id === "teacherResults") renderQuizResults();
+    }
+    document.querySelectorAll(".viewnav button").forEach(btn => btn.onclick = () => {
+      if (btn.dataset.view === "teacher") showTeacherSection("teacherGenerate");
+      else showStudentSection("videos");
+    });
+    const sectionObserver = new IntersectionObserver(entries => {
+      const visible = entries.filter(e=>e.isIntersecting).sort((a,b)=>b.intersectionRatio-a.intersectionRatio)[0];
+      if (visible && activeView === "student") setSectionNav(visible.target.id);
+    }, { rootMargin: "-42% 0px -45% 0px", threshold: [.12, .3, .6] });
+    ["videos","patterns","game","training"].forEach(id => sectionObserver.observe(document.getElementById(id)));
+    window.addEventListener("scroll", updateTopbarState, { passive: true });
+    updateTopbarState();
+
+    function renderVideos() {
+      const set = currentVideoSet();
+      const videos = currentVideos();
+      document.querySelectorAll("[data-video-lang]").forEach(btn => btn.classList.toggle("active", btn.dataset.videoLang === activeVideoLang));
+      videoGrid.innerHTML = videos.map((v,i)=>`<article class="card video-card">
+        <div class="video-thumb">${v.thumb ? `<img src="${v.thumb}" alt="${v.title}封面" loading="lazy" style="width:100%;height:100%;object-fit:cover">` : ""}<div class="play" style="position:absolute">▶</div></div>
+        <div class="card-meta"><span class="local-chip">${set.label} MP4</span><span class="duration">${v.duration || ""}</span></div>
+        <h3>${v.title}</h3><p class="muted">${v.desc}</p>
+        <div class="video-status">${set.status}</div>
+        <div class="actions">
+          <a class="primary" href="${v.src}">直接播放视频</a>
+          <button class="ghost" onclick="openVideo(${i})">页面内播放</button>
+          <button class="ghost" onclick="openQuiz(${i})">视频小测试</button>
+        </div>
+      </article>`).join("");
+    }
+    function setVideoLanguage(lang){
+      activeVideoLang = videoSets[lang] ? lang : "zh";
+      localStorage.setItem("wazuoVideoLang", activeVideoLang);
+      renderVideos();
+      runVideoSelfCheck();
+    }
+    function preloadLocalVideos(){
+      const videos = currentVideos();
+      let cache = document.getElementById("localVideoPreload");
+      if (!cache) {
+        cache = document.createElement("div");
+        cache.id = "localVideoPreload";
+        cache.hidden = true;
+        document.body.appendChild(cache);
+      }
+      cache.innerHTML = "";
+      let i = 0;
+      const loadNext = () => {
+        if (i >= videos.length) return;
+        const v = videos[i];
+        const media = document.createElement("video");
+        media.preload = "metadata";
+        media.muted = true;
+        media.playsInline = true;
+        media.style.display = "none";
+        media.src = v.src;
+        cache.appendChild(media);
+        let settled = false;
+        const done = () => {
+          if (settled) return;
+          settled = true;
+          i += 1;
+          window.setTimeout(loadNext, 180);
+        };
+        media.addEventListener("loadedmetadata", done, { once: true });
+        media.addEventListener("error", done, { once: true });
+        window.setTimeout(done, 2600);
+        media.load();
+      };
+      loadNext();
+    }
+    function scheduleVideoPreload(){
+      const run = () => preloadLocalVideos();
+      if ("requestIdleCallback" in window) requestIdleCallback(run, { timeout: 6000 });
+      else setTimeout(run, 2600);
+    }
+    function detectOpenMode(){
+      if (location.protocol === "file:") return "本地文件直接打开";
+      if (location.hostname === "127.0.0.1" || location.hostname === "localhost") return "本地预览地址打开";
+      return "网页链接打开";
+    }
+    function detectDevice(){
+      const ua = navigator.userAgent || "";
+      if (/MicroMessenger/i.test(ua)) return "微信内置浏览器";
+      if (/iPhone|iPad|iPod/i.test(ua)) return "iOS Safari/内置浏览器";
+      if (/Android/i.test(ua)) return "Android 浏览器";
+      if (/Chrome/i.test(ua)) return "桌面 Chrome/Chromium";
+      if (/Safari/i.test(ua)) return "桌面 Safari";
+      return "当前浏览器";
+    }
+    function runVideoSelfCheck(){
+      const panel = document.getElementById("videoCheckPanel");
+      if (!panel) return;
+      const set = currentVideoSet();
+      const videos = currentVideos();
+      const tester = document.createElement("video");
+      tester.style.display = "none";
+      const support = tester.canPlayType('video/mp4; codecs="avc1.42E01E, mp4a.40.2"') || tester.canPlayType("video/mp4") || "no";
+      const supportText = support === "no" ? "不支持 MP4 内嵌播放" : "支持 MP4 内嵌播放";
+      panel.innerHTML = `<b>播放自检</b>：${set.label}｜${detectOpenMode()}｜${detectDevice()}｜${supportText}｜正在读取本地视频信息...`;
+      if (support === "no") return;
+      let finished = false;
+      const finish = (text, ok=true) => {
+        if (finished) return;
+        finished = true;
+        tester.pause();
+        tester.removeAttribute("src");
+        tester.load();
+        panel.style.background = ok ? "rgba(74,111,165,.08)" : "rgba(200,85,61,.1)";
+        panel.style.borderColor = ok ? "rgba(74,111,165,.16)" : "rgba(200,85,61,.22)";
+        panel.style.color = ok ? "#4A6FA5" : "#C8553D";
+        panel.innerHTML = `<b>播放自检</b>：${set.label}｜${detectOpenMode()}｜${detectDevice()}｜${supportText}｜${text}`;
+      };
+      tester.preload = "metadata";
+      tester.muted = true;
+      tester.playsInline = true;
+      tester.src = videos[0].src;
+      tester.addEventListener("loadedmetadata", () => finish("兼容版视频可读取，建议用页面内播放器或备用入口播放。"), { once: true });
+      tester.addEventListener("error", () => finish(`未能读取兼容版视频，请确认网页与 ${set.selfCheckFolder} 文件夹在同一目录内。`, false), { once: true });
+      window.setTimeout(() => finish("读取本地视频较慢，仍可点击卡片后用备用入口打开。", false), 5000);
+      tester.load();
+    }
+    let activeClips = [];
+    let activeClipIndex = 0;
+    function videoErrorText(video) {
+      const code = video && video.error ? video.error.code : 0;
+      const map = {
+        1: "播放被中止，请重新点播放或用备用入口打开。",
+        2: `网络或本地文件读取失败，请确认 ${currentVideoSet().selfCheckFolder} 文件夹和网页在同一目录下。`,
+        3: "视频解码失败，当前设备可能不支持此文件。",
+        4: "当前打开方式不支持这个视频源。"
+      };
+      return map[code] || "当前设备未能开始播放，请尝试备用入口。";
+    }
+    function renderVideoFallback(clip) {
+      videoFallback.innerHTML = `
+        <a class="primary" href="${clip.src}">直接打开兼容版</a>
+      `;
+    }
+    function playClip(idx) {
+      activeClipIndex = idx;
+      const clip = activeClips[idx];
+      modalTitle.textContent = activeClips.length > 1 ? `${clip.title}（${idx + 1}/${activeClips.length}）` : clip.title;
+      videoBox.innerHTML = `<video id="activeVideo" poster="${clip.thumb || ''}" controls preload="metadata" playsinline webkit-playsinline style="width:100%;height:100%">
+        <source src="${clip.src}" type="video/mp4">
+        当前打开方式不支持内嵌视频播放。
+      </video>`;
+      const player = document.getElementById("activeVideo");
+      renderVideoFallback(clip);
+      modalDesc.innerHTML = `${clip.desc || ""}<p class="video-note">${currentVideoSet().note}</p>`;
+      player.addEventListener("loadedmetadata", () => {
+        const seconds = Number.isFinite(player.duration) ? Math.round(player.duration) : 0;
+        if (seconds) modalDesc.querySelector(".video-note").textContent = `视频已读取：${Math.floor(seconds / 60)}分${String(seconds % 60).padStart(2,"0")}秒。当前使用：${currentVideoSet().label}。`;
+      }, { once: true });
+      player.addEventListener("error", () => {
+        videoBox.insertAdjacentHTML("beforeend", `<div class="video-error">${videoErrorText(player)}</div>`);
+      }, { once: true });
+      player.onended = () => { if (activeClipIndex < activeClips.length - 1) playClip(activeClipIndex + 1); };
+      document.querySelectorAll(".clipBtn").forEach((b, i) => b.classList.toggle("active", i === idx));
+      player.load();
+      player.play().catch(() => {});
+    }
+    function openVideo(i) {
+      const v = currentVideos()[i];
+      activeClips = v.clips || [{ title: v.title, desc: v.desc, src: v.src, thumb: v.thumb }];
+      activeClipIndex = 0;
+      modalDesc.innerHTML = v.desc;
+      videoFallback.innerHTML = "";
+      videoModal.classList.add("open");
+      playClip(0);
+    }
+    function closeVideo(e){
+      if(!e || e.target.id==="videoModal" || e.target.classList.contains("close-btn")) {
+        const player = document.getElementById("activeVideo");
+        if (player) { player.pause(); player.removeAttribute("src"); player.load(); }
+        videoModal.classList.remove("open");
+      }
+    }
+
+    const quizStorageKey = "wazuoVideoQuizResults";
+    let activeQuizIndex = 0;
+    function readQuizResults(){
+      try { return JSON.parse(localStorage.getItem(quizStorageKey) || "[]"); }
+      catch { return []; }
+    }
+    function writeQuizResults(items){ localStorage.setItem(quizStorageKey, JSON.stringify(items)); }
+    function escapeCsv(value){ return `"${String(value ?? "").replace(/"/g, '""')}"`; }
+    function openQuiz(i){
+      activeQuizIndex = i;
+      const v = currentVideos()[i], quiz = videoQuizzes[i], set = currentVideoSet();
+      document.getElementById("quizTitle").textContent = `${set.label}｜${v.title}｜视频小测试`;
+      document.getElementById("quizBody").innerHTML = `
+        <div class="quiz-form">
+          <label>姓名/小组<input id="quizStudentName" class="quiz-name" value="${localStorage.getItem("wazuoLastStudentName") || "本机学生"}" /></label>
+          ${quiz.questions.map((item, qi)=>`
+            <div class="quiz-question">
+              <b>${qi + 1}. ${item.q}</b>
+              <div class="quiz-options">
+                ${item.options.map((option, oi)=>`<label><input type="radio" name="quizQ${qi}" value="${oi}"> <span>${option}</span></label>`).join("")}
+              </div>
+            </div>
+          `).join("")}
+          <div class="actions">
+            <button class="primary" onclick="submitQuiz()">提交测试</button>
+            <button class="ghost" onclick="closeQuiz()">稍后再做</button>
+          </div>
+        </div>`;
+      document.getElementById("quizModal").classList.add("open");
+    }
+    function closeQuiz(e){
+      if(!e || e.target.id==="quizModal" || e.target.classList.contains("close-btn")) {
+        document.getElementById("quizModal").classList.remove("open");
+      }
+    }
+    function submitQuiz(){
+      const quiz = videoQuizzes[activeQuizIndex];
+      const v = currentVideos()[activeQuizIndex], set = currentVideoSet();
+      const name = (document.getElementById("quizStudentName").value || "本机学生").trim();
+      localStorage.setItem("wazuoLastStudentName", name);
+      const answers = quiz.questions.map((item, qi) => {
+        const picked = document.querySelector(`input[name="quizQ${qi}"]:checked`);
+        return picked ? Number(picked.value) : -1;
+      });
+      if (answers.includes(-1)) { alert("还有题目没有选择。"); return; }
+      const details = quiz.questions.map((item, qi) => ({ question: item.q, answer: answers[qi], correct: item.answer, ok: answers[qi] === item.answer, explain: item.explain }));
+      const score = details.filter(item=>item.ok).length;
+      const result = {
+        id: Date.now(),
+        studentName: name,
+        videoTitle: `${set.label}｜${v.title}`,
+        score,
+        total: quiz.questions.length,
+        percent: Math.round(score / quiz.questions.length * 100),
+        submittedAt: new Date().toLocaleString(),
+        details
+      };
+      const items = readQuizResults();
+      items.unshift(result);
+      writeQuizResults(items.slice(0, 200));
+      document.getElementById("quizBody").innerHTML = `
+        <div class="quiz-result">
+          <h3>得分：${score}/${quiz.questions.length}</h3>
+          <p>结果已保存在本机，教师端可以查看。</p>
+        </div>
+        ${details.map((item, idx)=>`<div class="quiz-question"><b>${idx+1}. ${item.ok ? "答对" : "答错"}</b><p class="muted">${item.explain}</p></div>`).join("")}
+        <div class="actions"><button class="primary" onclick="closeQuiz()">完成</button><button class="ghost" onclick="openQuiz(activeQuizIndex)">再做一次</button></div>`;
+      renderQuizResults();
+    }
+    function renderQuizResults(){
+      const box = document.getElementById("quizResultsBody");
+      if (!box) return;
+      const items = readQuizResults();
+      if (!items.length) { box.innerHTML = "暂无测试结果。学生端提交视频小测试后，这里会自动出现。"; return; }
+      const totalDone = items.length;
+      const avg = Math.round(items.reduce((sum,item)=>sum+item.percent,0)/items.length);
+      box.innerHTML = `
+        <p><b>本机共 ${totalDone} 条提交记录，平均正确率 ${avg}%</b></p>
+        <div class="result-table-wrap"><table class="result-table">
+          <thead><tr><th>时间</th><th>姓名/小组</th><th>视频</th><th>得分</th><th>错题</th></tr></thead>
+          <tbody>
+            ${items.map(item=>`
+              <tr>
+                <td>${item.submittedAt}</td>
+                <td>${item.studentName}</td>
+                <td>${item.videoTitle}</td>
+                <td class="${item.percent >= 80 ? "score-good" : "score-warn"}">${item.score}/${item.total}（${item.percent}%）</td>
+                <td>${item.details.filter(d=>!d.ok).map(d=>d.question).join("；") || "无"}</td>
+              </tr>`).join("")}
+          </tbody>
+        </table></div>`;
+    }
+    function exportQuizResults(){
+      const items = readQuizResults();
+      if (!items.length) { alert("暂无可导出的测试结果。"); return; }
+      const rows = [["时间","姓名/小组","视频","得分","总分","正确率","错题"]];
+      items.forEach(item => rows.push([item.submittedAt,item.studentName,item.videoTitle,item.score,item.total,`${item.percent}%`,item.details.filter(d=>!d.ok).map(d=>d.question).join("；") || "无"]));
+      const csv = "\ufeff" + rows.map(row=>row.map(escapeCsv).join(",")).join("\n");
+      const a=document.createElement("a"); a.href=URL.createObjectURL(new Blob([csv],{type:"text/csv;charset=utf-8"})); a.download="学生视频小测试结果.csv"; a.click(); URL.revokeObjectURL(a.href);
+    }
+    function clearQuizResults(){
+      if (!confirm("确定清空当前电脑上的全部小测试记录吗？")) return;
+      localStorage.removeItem(quizStorageKey);
+      renderQuizResults();
+    }
+
+    function renderPatterns(filter="全部") {
+      patternFilters.innerHTML = categories.map(c=>`<button class="pill ${c===filter?'active':''}" onclick="renderPatterns('${c}')">${c}</button>`).join("");
+      const list = filter==="全部" ? patterns : patterns.filter(p=>p[1]===filter);
+      patternGrid.innerHTML = list.map((p)=>`<button class="card" style="text-align:left" onclick="selectedPattern=patterns[${patterns.indexOf(p)}]; renderGame(); renderRubbing(); renderColoring(); scrollToId('game')">
+        <div class="pattern">${medallion(p,150)}</div><h3>${p[0]}</h3><p class="muted">${p[1]} · ${(p[5] || '点击可用于制瓦和实操')}</p>
+      </button>`).join("");
+    }
+
+    function renderGame() {
+      const names = ["选土","制坯","选择纹样","烧制成型"];
+      gameSteps.innerHTML = names.map((n,i)=>`<button class="step ${i===gameStep?'active':i<gameStep?'done':''}" onclick="gameStep=${i};renderGame()"><b>${i+1}. ${n}</b><p class="muted">${["选择陶土颜色","调整瓦坯厚度","从纹样库选线稿","模拟入窑烧制"][i]}</p></button>`).join("");
+      if (gameStep===0) gameStage.innerHTML = `<div><h3>选择陶土</h3><div class="controls"><button class="swatch" style="background:#C9A96E" onclick="selectedSoil='#C9A96E';renderGame()"></button><button class="swatch" style="background:#C8553D" onclick="selectedSoil='#C8553D';renderGame()"></button><button class="swatch" style="background:#5C3D2E" onclick="selectedSoil='#5C3D2E';renderGame()"></button></div><div style="width:180px;height:180px;border-radius:50%;background:${selectedSoil};margin:20px auto"></div></div>`;
+      if (gameStep===1) gameStage.innerHTML = `<div style="text-align:center"><h3>制坯</h3><div style="width:230px;height:230px;border-radius:50%;background:${selectedSoil}55;border:18px solid #D9D3CB;margin:auto;display:grid;place-items:center">厚度适中</div></div>`;
+      if (gameStep===2) gameStage.innerHTML = `<div style="text-align:center"><h3>选择纹样</h3>${medallion(selectedPattern,240)}<p>${selectedPattern[0]}</p></div>`;
+      if (gameStep===3) gameStage.innerHTML = `<div style="text-align:center"><h3>烧制完成</h3><div style="background:${selectedSoil}55;border-radius:50%;padding:28px">${medallion(selectedPattern,230)}</div><p class="muted">可以保存 SVG 作品</p></div>`;
+    }
+    function nextGame(){ gameStep=Math.min(3,gameStep+1); renderGame(); }
+    function prevGame(){ gameStep=Math.max(0,gameStep-1); renderGame(); }
+    function resetGame(){ gameStep=0; renderGame(); }
+    function makeArtworkSvg(){ return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500"><rect width="500" height="500" fill="#F7F3ED"/><circle cx="250" cy="250" r="190" fill="${selectedSoil}" fill-opacity=".45" stroke="#D9D3CB" stroke-width="18"/><path d="${patternPath(selectedPattern)}" transform="scale(5)" fill="none" stroke="${selectedPattern[2]}" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/><circle cx="250" cy="250" r="32" fill="${selectedPattern[2]}"/></svg>`; }
+
+    document.querySelectorAll("[data-train]").forEach(btn => btn.onclick = () => {
+      document.querySelectorAll("[data-train]").forEach(b=>b.classList.remove("active")); btn.classList.add("active");
+      trainRubbing.classList.toggle("hidden", btn.dataset.train!=="rubbing");
+      trainDrawing.classList.toggle("hidden", btn.dataset.train!=="drawing");
+      trainColoring.classList.toggle("hidden", btn.dataset.train!=="coloring");
+      if(btn.dataset.train==="drawing") setupCanvas();
+      if(btn.dataset.train==="coloring") initLineArtColoring();
+    });
+    function renderRubbing(){
+      const names=["选取纹样","喷水扑墨","手指点点","完成拓片"];
+      rubbingSteps.innerHTML = names.map((n,i)=>`<div class="step ${i===rubbingStep?'active':i<rubbingStep?'done':''}"><b>${i+1}. ${n}</b><p class="muted">${["先选瓦当纹样线稿","宣纸微湿，准备扑墨","在纸面点按让纹样显现","得到拓片效果"][i]}</p></div>`).join("");
+      const opacity = rubbingStep<2 ? .14 : rubbingStep===2 ? Math.min(.28+rubbingDots*.08,.9) : .95;
+      rubbingStage.innerHTML = `<div style="position:absolute;inset:24px;background:white;border-radius:8px"></div><div style="opacity:${opacity};z-index:1">${medallion(selectedPattern,270)}</div><p style="position:absolute;bottom:18px;background:#ffffffe0;padding:8px 12px;border-radius:8px">第 ${rubbingStep+1} 步：${names[rubbingStep]}</p>`;
+    }
+    function nextRubbing(){ rubbingStep=Math.min(3,rubbingStep+1); renderRubbing(); }
+    function resetRubbing(){ rubbingStep=0; rubbingDots=0; renderRubbing(); }
+    function tapRubbing(){ if(rubbingStep===2){ rubbingDots++; if(rubbingDots>7) rubbingStep=3; renderRubbing(); } }
+
+    function setupCanvas(){
+      const c=drawCanvas, ctx=c.getContext("2d"); ctx.fillStyle="#F7F3ED"; ctx.fillRect(0,0,c.width,c.height); ctx.strokeStyle="#D9D3CB"; ctx.lineWidth=2; ctx.beginPath(); ctx.arc(500,210,150,0,Math.PI*2); ctx.stroke(); ctx.stroke(new Path2D(patternPath(selectedPattern)));
+    }
+    drawCanvas.onpointerdown = e => { drawing=true; const r=drawCanvas.getBoundingClientRect(); const ctx=drawCanvas.getContext("2d"); ctx.beginPath(); ctx.moveTo((e.clientX-r.left)*drawCanvas.width/r.width,(e.clientY-r.top)*drawCanvas.height/r.height); };
+    drawCanvas.onpointermove = e => { if(!drawing)return; const r=drawCanvas.getBoundingClientRect(); const ctx=drawCanvas.getContext("2d"); ctx.strokeStyle=brush; ctx.lineWidth=6; ctx.lineCap="round"; ctx.lineTo((e.clientX-r.left)*drawCanvas.width/r.width,(e.clientY-r.top)*drawCanvas.height/r.height); ctx.stroke(); };
+    drawCanvas.onpointerup = () => drawing=false;
+    function clearCanvas(){ setupCanvas(); }
+    function saveCanvas(){ const a=document.createElement("a"); a.href=drawCanvas.toDataURL("image/png"); a.download="瓦当手绘.png"; a.click(); }
+
+    function renderLineArtList(){
+      lineArtList.innerHTML = lineArts.map((item, i) => `<button type="button" class="lineart-option ${i===currentLineArtIndex?'active':''}" onclick="selectLineArt(${i})">
+        <img src="${item.src}" alt="${item.title}">
+        <span><b>${item.title}</b><small class="muted">${item.desc}</small></span>
+      </button>`).join("");
+    }
+    function initLineArtColoring(){
+      if (coloringReady) return;
+      const canvas = colorPaintCanvas;
+      canvas.onpointerdown = startLineArtPaint;
+      canvas.onpointermove = moveLineArtPaint;
+      canvas.onpointerup = stopLineArtPaint;
+      canvas.onpointercancel = stopLineArtPaint;
+      canvas.onpointerleave = stopLineArtPaint;
+      renderLineArtList();
+      selectLineArt(0);
+      coloringReady = true;
+    }
+    function selectLineArt(index){
+      currentLineArtIndex = index;
+      renderLineArtList();
+      clearLineArtColoring(false);
+      const item = lineArts[index];
+      lineArtTitle.textContent = item.title;
+      lineArtDesc.textContent = item.desc;
+      lineArtStatus.textContent = "线稿加载中...";
+      lineArtOverlay.onload = () => lineArtStatus.textContent = "选择颜色后，在画布上按住拖动即可涂彩。";
+      lineArtOverlay.onerror = () => lineArtStatus.textContent = "线稿没有加载成功，请确认 line-art-images 文件夹在离线包里。";
+      lineArtOverlay.src = item.src;
+    }
+    function clearLineArtColoring(showTip=true){
+      const canvas = colorPaintCanvas;
+      const ctx = canvas.getContext("2d");
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      if (showTip) lineArtStatus.textContent = "已清空颜色，可以重新涂彩。";
+    }
+    function setColoringBrush(color){
+      coloringBrush = color;
+      coloringEraser = false;
+      lineArtStatus.textContent = "已切换画笔颜色。";
+    }
+    function setColoringBrushSize(value){
+      coloringBrushSize = Number(value) || 26;
+      lineArtStatus.textContent = `笔刷粗细：${coloringBrushSize}`;
+    }
+    function setColoringEraser(){
+      coloringEraser = true;
+      lineArtStatus.textContent = "橡皮已开启，在颜色上拖动可以擦除。";
+    }
+    function lineArtPoint(event){
+      const rect = colorPaintCanvas.getBoundingClientRect();
+      return {
+        x: (event.clientX - rect.left) * colorPaintCanvas.width / rect.width,
+        y: (event.clientY - rect.top) * colorPaintCanvas.height / rect.height
+      };
+    }
+    function paintLineArtDot(point){
+      const ctx = colorPaintCanvas.getContext("2d");
+      ctx.save();
+      ctx.globalCompositeOperation = coloringEraser ? "destination-out" : "source-over";
+      ctx.fillStyle = coloringBrush;
+      ctx.beginPath();
+      ctx.arc(point.x, point.y, coloringBrushSize / 2, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+    }
+    function startLineArtPaint(event){
+      event.preventDefault();
+      colorPaintCanvas.setPointerCapture(event.pointerId);
+      lineArtPainting = true;
+      lastColorPoint = lineArtPoint(event);
+      paintLineArtDot(lastColorPoint);
+    }
+    function moveLineArtPaint(event){
+      if (!lineArtPainting) return;
+      event.preventDefault();
+      const point = lineArtPoint(event);
+      const ctx = colorPaintCanvas.getContext("2d");
+      ctx.save();
+      ctx.globalCompositeOperation = coloringEraser ? "destination-out" : "source-over";
+      ctx.strokeStyle = coloringBrush;
+      ctx.lineWidth = coloringBrushSize;
+      ctx.lineCap = "round";
+      ctx.lineJoin = "round";
+      ctx.beginPath();
+      ctx.moveTo(lastColorPoint.x, lastColorPoint.y);
+      ctx.lineTo(point.x, point.y);
+      ctx.stroke();
+      ctx.restore();
+      lastColorPoint = point;
+    }
+    function stopLineArtPaint(event){
+      lineArtPainting = false;
+      lastColorPoint = null;
+      if (event && colorPaintCanvas.hasPointerCapture(event.pointerId)) colorPaintCanvas.releasePointerCapture(event.pointerId);
+    }
+    function imageFit(img, width, height){
+      const scale = Math.min(width / img.naturalWidth, height / img.naturalHeight);
+      const w = img.naturalWidth * scale;
+      const h = img.naturalHeight * scale;
+      return { x: (width - w) / 2, y: (height - h) / 2, w, h };
+    }
+    function saveLineArtColoring(){
+      const out = document.createElement("canvas");
+      out.width = colorPaintCanvas.width;
+      out.height = colorPaintCanvas.height;
+      const ctx = out.getContext("2d");
+      ctx.fillStyle = "#fff";
+      ctx.fillRect(0, 0, out.width, out.height);
+      ctx.drawImage(colorPaintCanvas, 0, 0);
+      if (lineArtOverlay.complete && lineArtOverlay.naturalWidth) {
+        const fit = imageFit(lineArtOverlay, out.width, out.height);
+        ctx.globalCompositeOperation = "multiply";
+        ctx.drawImage(lineArtOverlay, fit.x, fit.y, fit.w, fit.h);
+        ctx.globalCompositeOperation = "source-over";
+      }
+      try {
+        const a = document.createElement("a");
+        a.href = out.toDataURL("image/png");
+        a.download = `${lineArts[currentLineArtIndex].title}-涂彩作品.png`;
+        a.click();
+        lineArtStatus.textContent = "涂彩作品已保存。";
+      } catch (err) {
+        lineArtStatus.textContent = "保存失败：请先用“打开本地预览”脚本进入页面，再保存作品。";
+      }
+    }
+    function renderColoring(){ initLineArtColoring(); }
+    function downloadSvg(name, svg){ const a=document.createElement("a"); a.href=URL.createObjectURL(new Blob([svg],{type:"image/svg+xml"})); a.download=name; a.click(); URL.revokeObjectURL(a.href); }
+
+    const lessonPackages = [
+      {
+            "id": "g1-1-wadang",
+            "ppt": "ppts/一年级-1课时-认识瓦当-生动活泼.pptx",
+            "lesson": "lesson-plans/一年级-1课时-认识瓦当-生动活泼.html",
+            "grade": "一年级",
+            "period": "1课时",
+            "topic": "认识瓦当",
+            "style": "生动活泼",
+            "focus": "从屋檐图片中认出瓦当，知道它能保护檐头，也能让建筑更美。",
+            "objectives": [
+                  "能指出瓦当位于屋檐前端。",
+                  "能用自己的话说出瓦当保护和装饰的作用。",
+                  "能画出一枚简单的圆形瓦当。"
+            ],
+            "steps": [
+                  "看屋檐图片，圈出瓦当所在位置。",
+                  "比较有瓦当和无瓦当的屋檐，讨论它的用途。",
+                  "用圆形纸片设计一枚自己的瓦当。"
+            ]
+      },
+      {
+            "id": "g2-1-patterns",
+            "ppt": "ppts/二年级-1课时-瓦当纹样初识-生动活泼.pptx",
+            "lesson": "lesson-plans/二年级-1课时-瓦当纹样初识-生动活泼.html",
+            "grade": "二年级",
+            "period": "1课时",
+            "topic": "瓦当纹样初识",
+            "style": "生动活泼",
+            "focus": "认识云纹、莲花、兽面和文字等常见纹样，感受纹样里的祝福。",
+            "objectives": [
+                  "能说出两到三种常见瓦当纹样。",
+                  "能按图案特征进行简单分类。",
+                  "能理解纹样常寄托吉祥愿望。"
+            ],
+            "steps": [
+                  "观察多枚瓦当，找出重复出现的图案。",
+                  "把纹样卡片按云、花、兽、字分类。",
+                  "为自己的纹样写一句祝福语。"
+            ]
+      },
+      {
+            "id": "g3-2-beasts",
+            "ppt": "ppts/三年级-2课时-屋顶小神兽-互动探究.pptx",
+            "lesson": "lesson-plans/三年级-2课时-屋顶小神兽-互动探究.html",
+            "grade": "三年级",
+            "period": "2课时",
+            "topic": "屋顶小神兽",
+            "style": "互动探究",
+            "focus": "从脊兽位置和形象入手，理解屋顶装饰中的守护寓意。",
+            "objectives": [
+                  "能认出常见屋脊兽的基本位置。",
+                  "能说出一两种脊兽的象征意义。",
+                  "能合作完成屋顶神兽排序任务。"
+            ],
+            "steps": [
+                  "第一课时观察屋顶图片，找出脊兽位置。",
+                  "第二课时分组领取神兽卡，完成名称、位置和寓意配对。",
+                  "小组展示一只神兽的守护故事。"
+            ]
+      },
+      {
+            "id": "g4-2-speaking",
+            "ppt": "ppts/四年级-2课时-纹样会说话-互动探究.pptx",
+            "lesson": "lesson-plans/四年级-2课时-纹样会说话-互动探究.html",
+            "grade": "四年级",
+            "period": "2课时",
+            "topic": "纹样会说话",
+            "style": "互动探究",
+            "focus": "用观察、联想和证据表达，读懂纹样中的文化寓意。",
+            "objectives": [
+                  "能从造型线索推测纹样寓意。",
+                  "能用证据说明自己的判断。",
+                  "能设计一张纹样寓意说明卡。"
+            ],
+            "steps": [
+                  "第一课时观察云纹、莲纹、文字瓦当。",
+                  "第二课时小组选择一类纹样，完成寓意卡和口头说明。",
+                  "全班组成纹样小展览，互评表达是否清楚。"
+            ]
+      },
+      {
+            "id": "g5-2-sishen",
+            "ppt": "ppts/五年级-2课时-四神瓦当-情境体验.pptx",
+            "lesson": "lesson-plans/五年级-2课时-四神瓦当-情境体验.html",
+            "grade": "五年级",
+            "period": "2课时",
+            "topic": "四神瓦当",
+            "style": "情境体验",
+            "focus": "在修缮情境中认识四神方位、季节、颜色和守护寓意。",
+            "objectives": [
+                  "了解青龙、白虎、朱雀、玄武的方位象征。",
+                  "能观察四神瓦当的造型特征并表达判断依据。",
+                  "能完成方位匹配和小组情境展示。"
+            ],
+            "steps": [
+                  "第一课时从屋檐情境导入，认识瓦当位置与功能。",
+                  "第二课时领取神兽身份卡，完成四方位匹配。",
+                  "小组说明判断依据，教师从观察和表达两个维度评价。"
+            ]
+      },
+      {
+            "id": "g6-3-build",
+            "ppt": "ppts/六年级-3课时-瓦作营造与守护-严谨专业.pptx",
+            "lesson": "lesson-plans/六年级-3课时-瓦作营造与守护-严谨专业.html",
+            "grade": "六年级",
+            "period": "3课时",
+            "topic": "瓦作营造与守护",
+            "style": "严谨专业",
+            "focus": "把瓦当放回古建筑屋顶系统中，理解构件、工艺与文化的关系。",
+            "objectives": [
+                  "能说明板瓦、筒瓦、瓦当和脊兽的配合关系。",
+                  "能从功能、材料、纹样三方面分析瓦作构件。",
+                  "能完成一张屋顶瓦作系统说明图。"
+            ],
+            "steps": [
+                  "第一课时识别屋顶瓦作构件和基本功能。",
+                  "第二课时分析纹样、等级和守护寓意。",
+                  "第三课时完成系统说明图并进行讲解展示。"
+            ]
+      }
+];
+    function generatedPptPath(grade, period, topic, style){
+      return `ppts-all/${grade}-${period}-${topic}-${style}.pptx`;
+    }
+    function activePackage(){
+      const gradeEl=document.getElementById("grade"), periodEl=document.getElementById("period"), topicEl=document.getElementById("topic"), styleEl=document.getElementById("style");
+      const g=gradeEl.value,p=periodEl.value,t=topicEl.value,s=styleEl.value;
+      const pkg = lessonPackages.find(x=>x.grade===g&&x.period===p&&x.topic===t&&x.style===s)
+        || lessonPackages.find(x=>x.topic===t)
+        || lessonPackages.find(x=>x.grade===g&&x.period===p)
+        || lessonPackages.find(x=>x.grade===g)
+        || lessonPackages[0];
+      return {
+        ...pkg,
+        grade: g,
+        period: p,
+        topic: t,
+        style: s,
+        ppt: generatedPptPath(g, p, t, s)
+      };
+    }
+    function presetPackage(id){
+      const pkg = lessonPackages.find(x=>x.id===id) || lessonPackages[0];
+      document.getElementById("grade").value=pkg.grade; document.getElementById("period").value=pkg.period; document.getElementById("topic").value=pkg.topic; document.getElementById("style").value=pkg.style;
+      generatePlan();
+    }
+    function presetTopic(t){
+      const pkg = lessonPackages.find(x=>x.topic===t) || lessonPackages[0];
+      presetPackage(pkg.id);
+    }
+    function generatePlan(){
+      const pkg=activePackage();
+      const gradeValue=document.getElementById("grade").value, periodValue=document.getElementById("period").value, styleValue=document.getElementById("style").value;
+      currentPlan = `${pkg.topic}｜${gradeValue}｜${periodValue}\n教学风格：${styleValue}\n\n教学目标：\n${pkg.objectives.map((x,i)=>`${i+1}. ${x}`).join("\n")}\n\n教学过程：\n${pkg.steps.map((x,i)=>`${i+1}. ${x}`).join("\n")}\n\n课堂任务：学生完成观察记录、纹样说明或构件匹配，并说明判断依据。\n\n配套课件：${pkg.ppt}\n配套教案：${pkg.lesson}`;
+      document.getElementById("planOut").innerHTML = `<h2>《${pkg.topic}》</h2><p><b>${gradeValue}</b> · <b>${periodValue}</b> · ${styleValue}</p><pre style="white-space:pre-wrap;line-height:1.7">${currentPlan}</pre>`;
+    }
+    function downloadPlan(){ if(!currentPlan) generatePlan(); downloadText(`${activePackage().topic}教案.doc`, currentPlan); }
+    function openGeneratedPpt(){ if(!currentPlan) generatePlan(); window.open(encodeURI(activePackage().ppt), "_blank"); }
+    function openGeneratedLesson(){ if(!currentPlan) generatePlan(); window.open(activePackage().lesson, "_blank"); }
+    function downloadText(name, text){ const a=document.createElement("a"); a.href=URL.createObjectURL(new Blob([text],{type:"application/octet-stream"})); a.download=name; a.click(); URL.revokeObjectURL(a.href); }
+
+    document.getElementById("grade").addEventListener("change", generatePlan);
+    document.getElementById("period").addEventListener("change", generatePlan);
+    document.getElementById("style").addEventListener("change", generatePlan);
+    document.getElementById("topic").addEventListener("change", generatePlan);
+    renderTopNav("student", "videos"); renderVideos(); runVideoSelfCheck(); renderPatterns(); renderGame(); renderRubbing(); renderColoring(); setupCanvas(); presetPackage('g5-2-sishen'); renderQuizResults();
+  </script>
+</body>
+</html>
