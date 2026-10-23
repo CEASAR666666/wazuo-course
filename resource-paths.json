@@ -1,550 +1,466 @@
 [
-  "lesson-plans/一年级-1课时-认识瓦当-生动活泼.html",
-  "lesson-plans/三年级-2课时-屋顶小神兽-互动探究.html",
-  "lesson-plans/二年级-1课时-瓦当纹样初识-生动活泼.html",
-  "lesson-plans/五年级-2课时-四神瓦当-情境体验.html",
-  "lesson-plans/六年级-3课时-瓦作营造与守护-严谨专业.html",
-  "lesson-plans/四年级-2课时-纹样会说话-互动探究.html",
-  "line-art-images/baban-lianhua.jpg",
-  "line-art-images/baihu.jpg",
-  "line-art-images/changle-weiyang.jpg",
-  "line-art-images/kuiwen.jpg",
-  "line-art-images/liuye-shiwen.jpg",
-  "line-art-images/panlong.jpg",
-  "line-art-images/shumu-shuangmu.jpg",
-  "line-art-images/sishen-gouyun.jpg",
-  "line-art-images/siye-yunwen.jpg",
-  "line-art-images/xuanwu.jpg",
-  "line-art-images/yulin-jiyu.jpg",
-  "line-art-images/zhuque.jpg",
-  "pattern-library-docx-images/docx-pattern-01.jpeg",
-  "pattern-library-docx-images/docx-pattern-02.png",
-  "pattern-library-docx-images/docx-pattern-03.jpeg",
-  "pattern-library-docx-images/docx-pattern-04.jpeg",
-  "pattern-library-docx-images/docx-pattern-05.jpeg",
-  "pattern-library-docx-images/docx-pattern-06.jpeg",
-  "pattern-library-docx-images/docx-pattern-07.jpeg",
-  "pattern-library-docx-images/docx-pattern-08.jpeg",
-  "pattern-library-docx-images/docx-pattern-09.jpeg",
-  "pattern-library-docx-images/docx-pattern-10.jpeg",
-  "pattern-library-docx-images/docx-pattern-11.jpeg",
-  "pattern-library-docx-images/docx-pattern-12.jpeg",
-  "pattern-library-docx-images/docx-pattern-13.jpeg",
-  "pattern-library-docx-images/docx-pattern-14.jpeg",
-  "pattern-library-docx-images/docx-pattern-15.jpeg",
-  "pattern-library-docx-images/docx-pattern-16.jpeg",
-  "pattern-library-docx-images/docx-pattern-17.jpeg",
-  "pattern-library-docx-images/docx-pattern-18.jpeg",
-  "pattern-library-docx-images/docx-pattern-19.jpeg",
-  "pattern-library-docx-images/docx-pattern-20.jpeg",
-  "pattern-library-docx-images/docx-pattern-21.jpeg",
-  "pattern-library-docx-images/docx-pattern-22.jpeg",
-  "pattern-library-docx-images/docx-pattern-23.jpeg",
-  "pattern-library-docx-images/docx-pattern-24.jpeg",
-  "pattern-library-docx-images/docx-pattern-25.jpeg",
-  "pattern-library-docx-images/docx-pattern-26.jpeg",
-  "pattern-library-docx-images/docx-pattern-27.jpeg",
-  "pattern-library-docx-images/docx-pattern-28.jpeg",
-  "pattern-library-docx-images/docx-pattern-29.jpeg",
-  "pattern-library-docx-images/docx-pattern-30.jpeg",
-  "pattern-library-docx-images/docx-pattern-31.jpeg",
-  "pattern-library-docx-images/docx-pattern-32.jpeg",
-  "pattern-library-docx-images/docx-pattern-33.jpeg",
-  "pattern-library-docx-images/docx-pattern-34.jpeg",
-  "pattern-library-docx-images/docx-pattern-35.jpeg",
-  "pattern-library-docx-images/docx-pattern-36.jpeg",
-  "pattern-library-docx-images/docx-pattern-37.jpeg",
-  "pattern-library-docx-images/docx-pattern-38.jpeg",
-  "pattern-library-docx-images/docx-pattern-39.jpeg",
-  "pattern-library-docx-images/docx-pattern-40.jpeg",
-  "pattern-library-docx-images/docx-pattern-41.jpeg",
-  "pattern-library-docx-images/docx-pattern-42.jpeg",
-  "pattern-library-docx-images/docx-pattern-43.jpeg",
-  "pattern-library-docx-images/docx-pattern-44.jpeg",
-  "pattern-library-docx-images/docx-pattern-45.jpeg",
-  "pattern-library-docx-images/docx-pattern-46.png",
-  "pattern-library-docx-images/docx-pattern-47.png",
-  "pattern-library-docx-images/docx-pattern-48.png",
-  "pattern-library-docx-images/docx-pattern-49.png",
-  "pattern-library-docx-images/docx-pattern-50.png",
-  "pattern-library-docx-images/docx-pattern-51.png",
-  "pattern-library-docx-images/docx-pattern-52.png",
-  "pattern-library-docx-images/docx-pattern-53.png",
-  "pattern-library-docx-images/docx-pattern-54.png",
-  "pattern-library-docx-images/docx-pattern-55.png",
-  "pattern-library-docx-images/docx-pattern-56.png",
-  "pattern-library-docx-images/docx-pattern-57.png",
-  "pattern-library-docx-images/docx-pattern-58.png",
-  "pattern-library-docx-images/docx-pattern-59.png",
-  "pattern-library-docx-images/docx-pattern-60.png",
-  "pattern-library-docx-images/docx-pattern-61.png",
-  "pattern-library-docx-images/docx-pattern-62.png",
-  "pattern-library-docx-images/docx-pattern-63.png",
-  "pattern-library-images/image40.png",
-  "ppts-all/一年级-1课时-四神瓦当-严谨专业.pptx",
-  "ppts-all/一年级-1课时-四神瓦当-互动探究.pptx",
-  "ppts-all/一年级-1课时-四神瓦当-情境体验.pptx",
-  "ppts-all/一年级-1课时-四神瓦当-生动活泼.pptx",
-  "ppts-all/一年级-1课时-屋顶小神兽-严谨专业.pptx",
-  "ppts-all/一年级-1课时-屋顶小神兽-互动探究.pptx",
-  "ppts-all/一年级-1课时-屋顶小神兽-情境体验.pptx",
-  "ppts-all/一年级-1课时-屋顶小神兽-生动活泼.pptx",
-  "ppts-all/一年级-1课时-瓦作营造与守护-严谨专业.pptx",
-  "ppts-all/一年级-1课时-瓦作营造与守护-互动探究.pptx",
-  "ppts-all/一年级-1课时-瓦作营造与守护-情境体验.pptx",
-  "ppts-all/一年级-1课时-瓦作营造与守护-生动活泼.pptx",
-  "ppts-all/一年级-1课时-瓦当纹样初识-严谨专业.pptx",
-  "ppts-all/一年级-1课时-瓦当纹样初识-互动探究.pptx",
-  "ppts-all/一年级-1课时-瓦当纹样初识-情境体验.pptx",
-  "ppts-all/一年级-1课时-瓦当纹样初识-生动活泼.pptx",
-  "ppts-all/一年级-1课时-纹样会说话-严谨专业.pptx",
-  "ppts-all/一年级-1课时-纹样会说话-互动探究.pptx",
-  "ppts-all/一年级-1课时-纹样会说话-情境体验.pptx",
-  "ppts-all/一年级-1课时-纹样会说话-生动活泼.pptx",
-  "ppts-all/一年级-1课时-认识瓦当-严谨专业.pptx",
-  "ppts-all/一年级-1课时-认识瓦当-互动探究.pptx",
-  "ppts-all/一年级-1课时-认识瓦当-情境体验.pptx",
-  "ppts-all/一年级-1课时-认识瓦当-生动活泼.pptx",
-  "ppts-all/一年级-2课时-四神瓦当-严谨专业.pptx",
-  "ppts-all/一年级-2课时-四神瓦当-互动探究.pptx",
-  "ppts-all/一年级-2课时-四神瓦当-情境体验.pptx",
-  "ppts-all/一年级-2课时-四神瓦当-生动活泼.pptx",
-  "ppts-all/一年级-2课时-屋顶小神兽-严谨专业.pptx",
-  "ppts-all/一年级-2课时-屋顶小神兽-互动探究.pptx",
-  "ppts-all/一年级-2课时-屋顶小神兽-情境体验.pptx",
-  "ppts-all/一年级-2课时-屋顶小神兽-生动活泼.pptx",
-  "ppts-all/一年级-2课时-瓦作营造与守护-严谨专业.pptx",
-  "ppts-all/一年级-2课时-瓦作营造与守护-互动探究.pptx",
-  "ppts-all/一年级-2课时-瓦作营造与守护-情境体验.pptx",
-  "ppts-all/一年级-2课时-瓦作营造与守护-生动活泼.pptx",
-  "ppts-all/一年级-2课时-瓦当纹样初识-严谨专业.pptx",
-  "ppts-all/一年级-2课时-瓦当纹样初识-互动探究.pptx",
-  "ppts-all/一年级-2课时-瓦当纹样初识-情境体验.pptx",
-  "ppts-all/一年级-2课时-瓦当纹样初识-生动活泼.pptx",
-  "ppts-all/一年级-2课时-纹样会说话-严谨专业.pptx",
-  "ppts-all/一年级-2课时-纹样会说话-互动探究.pptx",
-  "ppts-all/一年级-2课时-纹样会说话-情境体验.pptx",
-  "ppts-all/一年级-2课时-纹样会说话-生动活泼.pptx",
-  "ppts-all/一年级-2课时-认识瓦当-严谨专业.pptx",
-  "ppts-all/一年级-2课时-认识瓦当-互动探究.pptx",
-  "ppts-all/一年级-2课时-认识瓦当-情境体验.pptx",
-  "ppts-all/一年级-2课时-认识瓦当-生动活泼.pptx",
-  "ppts-all/一年级-3课时-四神瓦当-严谨专业.pptx",
-  "ppts-all/一年级-3课时-四神瓦当-互动探究.pptx",
-  "ppts-all/一年级-3课时-四神瓦当-情境体验.pptx",
-  "ppts-all/一年级-3课时-四神瓦当-生动活泼.pptx",
-  "ppts-all/一年级-3课时-屋顶小神兽-严谨专业.pptx",
-  "ppts-all/一年级-3课时-屋顶小神兽-互动探究.pptx",
-  "ppts-all/一年级-3课时-屋顶小神兽-情境体验.pptx",
-  "ppts-all/一年级-3课时-屋顶小神兽-生动活泼.pptx",
-  "ppts-all/一年级-3课时-瓦作营造与守护-严谨专业.pptx",
-  "ppts-all/一年级-3课时-瓦作营造与守护-互动探究.pptx",
-  "ppts-all/一年级-3课时-瓦作营造与守护-情境体验.pptx",
-  "ppts-all/一年级-3课时-瓦作营造与守护-生动活泼.pptx",
-  "ppts-all/一年级-3课时-瓦当纹样初识-严谨专业.pptx",
-  "ppts-all/一年级-3课时-瓦当纹样初识-互动探究.pptx",
-  "ppts-all/一年级-3课时-瓦当纹样初识-情境体验.pptx",
-  "ppts-all/一年级-3课时-瓦当纹样初识-生动活泼.pptx",
-  "ppts-all/一年级-3课时-纹样会说话-严谨专业.pptx",
-  "ppts-all/一年级-3课时-纹样会说话-互动探究.pptx",
-  "ppts-all/一年级-3课时-纹样会说话-情境体验.pptx",
-  "ppts-all/一年级-3课时-纹样会说话-生动活泼.pptx",
-  "ppts-all/一年级-3课时-认识瓦当-严谨专业.pptx",
-  "ppts-all/一年级-3课时-认识瓦当-互动探究.pptx",
-  "ppts-all/一年级-3课时-认识瓦当-情境体验.pptx",
-  "ppts-all/一年级-3课时-认识瓦当-生动活泼.pptx",
-  "ppts-all/三年级-1课时-四神瓦当-严谨专业.pptx",
-  "ppts-all/三年级-1课时-四神瓦当-互动探究.pptx",
-  "ppts-all/三年级-1课时-四神瓦当-情境体验.pptx",
-  "ppts-all/三年级-1课时-四神瓦当-生动活泼.pptx",
-  "ppts-all/三年级-1课时-屋顶小神兽-严谨专业.pptx",
-  "ppts-all/三年级-1课时-屋顶小神兽-互动探究.pptx",
-  "ppts-all/三年级-1课时-屋顶小神兽-情境体验.pptx",
-  "ppts-all/三年级-1课时-屋顶小神兽-生动活泼.pptx",
-  "ppts-all/三年级-1课时-瓦作营造与守护-严谨专业.pptx",
-  "ppts-all/三年级-1课时-瓦作营造与守护-互动探究.pptx",
-  "ppts-all/三年级-1课时-瓦作营造与守护-情境体验.pptx",
-  "ppts-all/三年级-1课时-瓦作营造与守护-生动活泼.pptx",
-  "ppts-all/三年级-1课时-瓦当纹样初识-严谨专业.pptx",
-  "ppts-all/三年级-1课时-瓦当纹样初识-互动探究.pptx",
-  "ppts-all/三年级-1课时-瓦当纹样初识-情境体验.pptx",
-  "ppts-all/三年级-1课时-瓦当纹样初识-生动活泼.pptx",
-  "ppts-all/三年级-1课时-纹样会说话-严谨专业.pptx",
-  "ppts-all/三年级-1课时-纹样会说话-互动探究.pptx",
-  "ppts-all/三年级-1课时-纹样会说话-情境体验.pptx",
-  "ppts-all/三年级-1课时-纹样会说话-生动活泼.pptx",
-  "ppts-all/三年级-1课时-认识瓦当-严谨专业.pptx",
-  "ppts-all/三年级-1课时-认识瓦当-互动探究.pptx",
-  "ppts-all/三年级-1课时-认识瓦当-情境体验.pptx",
-  "ppts-all/三年级-1课时-认识瓦当-生动活泼.pptx",
-  "ppts-all/三年级-2课时-四神瓦当-严谨专业.pptx",
-  "ppts-all/三年级-2课时-四神瓦当-互动探究.pptx",
-  "ppts-all/三年级-2课时-四神瓦当-情境体验.pptx",
-  "ppts-all/三年级-2课时-四神瓦当-生动活泼.pptx",
-  "ppts-all/三年级-2课时-屋顶小神兽-严谨专业.pptx",
-  "ppts-all/三年级-2课时-屋顶小神兽-互动探究.pptx",
-  "ppts-all/三年级-2课时-屋顶小神兽-情境体验.pptx",
-  "ppts-all/三年级-2课时-屋顶小神兽-生动活泼.pptx",
-  "ppts-all/三年级-2课时-瓦作营造与守护-严谨专业.pptx",
-  "ppts-all/三年级-2课时-瓦作营造与守护-互动探究.pptx",
-  "ppts-all/三年级-2课时-瓦作营造与守护-情境体验.pptx",
-  "ppts-all/三年级-2课时-瓦作营造与守护-生动活泼.pptx",
-  "ppts-all/三年级-2课时-瓦当纹样初识-严谨专业.pptx",
-  "ppts-all/三年级-2课时-瓦当纹样初识-互动探究.pptx",
-  "ppts-all/三年级-2课时-瓦当纹样初识-情境体验.pptx",
-  "ppts-all/三年级-2课时-瓦当纹样初识-生动活泼.pptx",
-  "ppts-all/三年级-2课时-纹样会说话-严谨专业.pptx",
-  "ppts-all/三年级-2课时-纹样会说话-互动探究.pptx",
-  "ppts-all/三年级-2课时-纹样会说话-情境体验.pptx",
-  "ppts-all/三年级-2课时-纹样会说话-生动活泼.pptx",
-  "ppts-all/三年级-2课时-认识瓦当-严谨专业.pptx",
-  "ppts-all/三年级-2课时-认识瓦当-互动探究.pptx",
-  "ppts-all/三年级-2课时-认识瓦当-情境体验.pptx",
-  "ppts-all/三年级-2课时-认识瓦当-生动活泼.pptx",
-  "ppts-all/三年级-3课时-四神瓦当-严谨专业.pptx",
-  "ppts-all/三年级-3课时-四神瓦当-互动探究.pptx",
-  "ppts-all/三年级-3课时-四神瓦当-情境体验.pptx",
-  "ppts-all/三年级-3课时-四神瓦当-生动活泼.pptx",
-  "ppts-all/三年级-3课时-屋顶小神兽-严谨专业.pptx",
-  "ppts-all/三年级-3课时-屋顶小神兽-互动探究.pptx",
-  "ppts-all/三年级-3课时-屋顶小神兽-情境体验.pptx",
-  "ppts-all/三年级-3课时-屋顶小神兽-生动活泼.pptx",
-  "ppts-all/三年级-3课时-瓦作营造与守护-严谨专业.pptx",
-  "ppts-all/三年级-3课时-瓦作营造与守护-互动探究.pptx",
-  "ppts-all/三年级-3课时-瓦作营造与守护-情境体验.pptx",
-  "ppts-all/三年级-3课时-瓦作营造与守护-生动活泼.pptx",
-  "ppts-all/三年级-3课时-瓦当纹样初识-严谨专业.pptx",
-  "ppts-all/三年级-3课时-瓦当纹样初识-互动探究.pptx",
-  "ppts-all/三年级-3课时-瓦当纹样初识-情境体验.pptx",
-  "ppts-all/三年级-3课时-瓦当纹样初识-生动活泼.pptx",
-  "ppts-all/三年级-3课时-纹样会说话-严谨专业.pptx",
-  "ppts-all/三年级-3课时-纹样会说话-互动探究.pptx",
-  "ppts-all/三年级-3课时-纹样会说话-情境体验.pptx",
-  "ppts-all/三年级-3课时-纹样会说话-生动活泼.pptx",
-  "ppts-all/三年级-3课时-认识瓦当-严谨专业.pptx",
-  "ppts-all/三年级-3课时-认识瓦当-互动探究.pptx",
-  "ppts-all/三年级-3课时-认识瓦当-情境体验.pptx",
-  "ppts-all/三年级-3课时-认识瓦当-生动活泼.pptx",
-  "ppts-all/二年级-1课时-四神瓦当-严谨专业.pptx",
-  "ppts-all/二年级-1课时-四神瓦当-互动探究.pptx",
-  "ppts-all/二年级-1课时-四神瓦当-情境体验.pptx",
-  "ppts-all/二年级-1课时-四神瓦当-生动活泼.pptx",
-  "ppts-all/二年级-1课时-屋顶小神兽-严谨专业.pptx",
-  "ppts-all/二年级-1课时-屋顶小神兽-互动探究.pptx",
-  "ppts-all/二年级-1课时-屋顶小神兽-情境体验.pptx",
-  "ppts-all/二年级-1课时-屋顶小神兽-生动活泼.pptx",
-  "ppts-all/二年级-1课时-瓦作营造与守护-严谨专业.pptx",
-  "ppts-all/二年级-1课时-瓦作营造与守护-互动探究.pptx",
-  "ppts-all/二年级-1课时-瓦作营造与守护-情境体验.pptx",
-  "ppts-all/二年级-1课时-瓦作营造与守护-生动活泼.pptx",
-  "ppts-all/二年级-1课时-瓦当纹样初识-严谨专业.pptx",
-  "ppts-all/二年级-1课时-瓦当纹样初识-互动探究.pptx",
-  "ppts-all/二年级-1课时-瓦当纹样初识-情境体验.pptx",
-  "ppts-all/二年级-1课时-瓦当纹样初识-生动活泼.pptx",
-  "ppts-all/二年级-1课时-纹样会说话-严谨专业.pptx",
-  "ppts-all/二年级-1课时-纹样会说话-互动探究.pptx",
-  "ppts-all/二年级-1课时-纹样会说话-情境体验.pptx",
-  "ppts-all/二年级-1课时-纹样会说话-生动活泼.pptx",
-  "ppts-all/二年级-1课时-认识瓦当-严谨专业.pptx",
-  "ppts-all/二年级-1课时-认识瓦当-互动探究.pptx",
-  "ppts-all/二年级-1课时-认识瓦当-情境体验.pptx",
-  "ppts-all/二年级-1课时-认识瓦当-生动活泼.pptx",
-  "ppts-all/二年级-2课时-四神瓦当-严谨专业.pptx",
-  "ppts-all/二年级-2课时-四神瓦当-互动探究.pptx",
-  "ppts-all/二年级-2课时-四神瓦当-情境体验.pptx",
-  "ppts-all/二年级-2课时-四神瓦当-生动活泼.pptx",
-  "ppts-all/二年级-2课时-屋顶小神兽-严谨专业.pptx",
-  "ppts-all/二年级-2课时-屋顶小神兽-互动探究.pptx",
-  "ppts-all/二年级-2课时-屋顶小神兽-情境体验.pptx",
-  "ppts-all/二年级-2课时-屋顶小神兽-生动活泼.pptx",
-  "ppts-all/二年级-2课时-瓦作营造与守护-严谨专业.pptx",
-  "ppts-all/二年级-2课时-瓦作营造与守护-互动探究.pptx",
-  "ppts-all/二年级-2课时-瓦作营造与守护-情境体验.pptx",
-  "ppts-all/二年级-2课时-瓦作营造与守护-生动活泼.pptx",
-  "ppts-all/二年级-2课时-瓦当纹样初识-严谨专业.pptx",
-  "ppts-all/二年级-2课时-瓦当纹样初识-互动探究.pptx",
-  "ppts-all/二年级-2课时-瓦当纹样初识-情境体验.pptx",
-  "ppts-all/二年级-2课时-瓦当纹样初识-生动活泼.pptx",
-  "ppts-all/二年级-2课时-纹样会说话-严谨专业.pptx",
-  "ppts-all/二年级-2课时-纹样会说话-互动探究.pptx",
-  "ppts-all/二年级-2课时-纹样会说话-情境体验.pptx",
-  "ppts-all/二年级-2课时-纹样会说话-生动活泼.pptx",
-  "ppts-all/二年级-2课时-认识瓦当-严谨专业.pptx",
-  "ppts-all/二年级-2课时-认识瓦当-互动探究.pptx",
-  "ppts-all/二年级-2课时-认识瓦当-情境体验.pptx",
-  "ppts-all/二年级-2课时-认识瓦当-生动活泼.pptx",
-  "ppts-all/二年级-3课时-四神瓦当-严谨专业.pptx",
-  "ppts-all/二年级-3课时-四神瓦当-互动探究.pptx",
-  "ppts-all/二年级-3课时-四神瓦当-情境体验.pptx",
-  "ppts-all/二年级-3课时-四神瓦当-生动活泼.pptx",
-  "ppts-all/二年级-3课时-屋顶小神兽-严谨专业.pptx",
-  "ppts-all/二年级-3课时-屋顶小神兽-互动探究.pptx",
-  "ppts-all/二年级-3课时-屋顶小神兽-情境体验.pptx",
-  "ppts-all/二年级-3课时-屋顶小神兽-生动活泼.pptx",
-  "ppts-all/二年级-3课时-瓦作营造与守护-严谨专业.pptx",
-  "ppts-all/二年级-3课时-瓦作营造与守护-互动探究.pptx",
-  "ppts-all/二年级-3课时-瓦作营造与守护-情境体验.pptx",
-  "ppts-all/二年级-3课时-瓦作营造与守护-生动活泼.pptx",
-  "ppts-all/二年级-3课时-瓦当纹样初识-严谨专业.pptx",
-  "ppts-all/二年级-3课时-瓦当纹样初识-互动探究.pptx",
-  "ppts-all/二年级-3课时-瓦当纹样初识-情境体验.pptx",
-  "ppts-all/二年级-3课时-瓦当纹样初识-生动活泼.pptx",
-  "ppts-all/二年级-3课时-纹样会说话-严谨专业.pptx",
-  "ppts-all/二年级-3课时-纹样会说话-互动探究.pptx",
-  "ppts-all/二年级-3课时-纹样会说话-情境体验.pptx",
-  "ppts-all/二年级-3课时-纹样会说话-生动活泼.pptx",
-  "ppts-all/二年级-3课时-认识瓦当-严谨专业.pptx",
-  "ppts-all/二年级-3课时-认识瓦当-互动探究.pptx",
-  "ppts-all/二年级-3课时-认识瓦当-情境体验.pptx",
-  "ppts-all/二年级-3课时-认识瓦当-生动活泼.pptx",
-  "ppts-all/五年级-1课时-四神瓦当-严谨专业.pptx",
-  "ppts-all/五年级-1课时-四神瓦当-互动探究.pptx",
-  "ppts-all/五年级-1课时-四神瓦当-情境体验.pptx",
-  "ppts-all/五年级-1课时-四神瓦当-生动活泼.pptx",
-  "ppts-all/五年级-1课时-屋顶小神兽-严谨专业.pptx",
-  "ppts-all/五年级-1课时-屋顶小神兽-互动探究.pptx",
-  "ppts-all/五年级-1课时-屋顶小神兽-情境体验.pptx",
-  "ppts-all/五年级-1课时-屋顶小神兽-生动活泼.pptx",
-  "ppts-all/五年级-1课时-瓦作营造与守护-严谨专业.pptx",
-  "ppts-all/五年级-1课时-瓦作营造与守护-互动探究.pptx",
-  "ppts-all/五年级-1课时-瓦作营造与守护-情境体验.pptx",
-  "ppts-all/五年级-1课时-瓦作营造与守护-生动活泼.pptx",
-  "ppts-all/五年级-1课时-瓦当纹样初识-严谨专业.pptx",
-  "ppts-all/五年级-1课时-瓦当纹样初识-互动探究.pptx",
-  "ppts-all/五年级-1课时-瓦当纹样初识-情境体验.pptx",
-  "ppts-all/五年级-1课时-瓦当纹样初识-生动活泼.pptx",
-  "ppts-all/五年级-1课时-纹样会说话-严谨专业.pptx",
-  "ppts-all/五年级-1课时-纹样会说话-互动探究.pptx",
-  "ppts-all/五年级-1课时-纹样会说话-情境体验.pptx",
-  "ppts-all/五年级-1课时-纹样会说话-生动活泼.pptx",
-  "ppts-all/五年级-1课时-认识瓦当-严谨专业.pptx",
-  "ppts-all/五年级-1课时-认识瓦当-互动探究.pptx",
-  "ppts-all/五年级-1课时-认识瓦当-情境体验.pptx",
-  "ppts-all/五年级-1课时-认识瓦当-生动活泼.pptx",
-  "ppts-all/五年级-2课时-四神瓦当-严谨专业.pptx",
-  "ppts-all/五年级-2课时-四神瓦当-互动探究.pptx",
-  "ppts-all/五年级-2课时-四神瓦当-情境体验.pptx",
-  "ppts-all/五年级-2课时-四神瓦当-生动活泼.pptx",
-  "ppts-all/五年级-2课时-屋顶小神兽-严谨专业.pptx",
-  "ppts-all/五年级-2课时-屋顶小神兽-互动探究.pptx",
-  "ppts-all/五年级-2课时-屋顶小神兽-情境体验.pptx",
-  "ppts-all/五年级-2课时-屋顶小神兽-生动活泼.pptx",
-  "ppts-all/五年级-2课时-瓦作营造与守护-严谨专业.pptx",
-  "ppts-all/五年级-2课时-瓦作营造与守护-互动探究.pptx",
-  "ppts-all/五年级-2课时-瓦作营造与守护-情境体验.pptx",
-  "ppts-all/五年级-2课时-瓦作营造与守护-生动活泼.pptx",
-  "ppts-all/五年级-2课时-瓦当纹样初识-严谨专业.pptx",
-  "ppts-all/五年级-2课时-瓦当纹样初识-互动探究.pptx",
-  "ppts-all/五年级-2课时-瓦当纹样初识-情境体验.pptx",
-  "ppts-all/五年级-2课时-瓦当纹样初识-生动活泼.pptx",
-  "ppts-all/五年级-2课时-纹样会说话-严谨专业.pptx",
-  "ppts-all/五年级-2课时-纹样会说话-互动探究.pptx",
-  "ppts-all/五年级-2课时-纹样会说话-情境体验.pptx",
-  "ppts-all/五年级-2课时-纹样会说话-生动活泼.pptx",
-  "ppts-all/五年级-2课时-认识瓦当-严谨专业.pptx",
-  "ppts-all/五年级-2课时-认识瓦当-互动探究.pptx",
-  "ppts-all/五年级-2课时-认识瓦当-情境体验.pptx",
-  "ppts-all/五年级-2课时-认识瓦当-生动活泼.pptx",
-  "ppts-all/五年级-3课时-四神瓦当-严谨专业.pptx",
-  "ppts-all/五年级-3课时-四神瓦当-互动探究.pptx",
-  "ppts-all/五年级-3课时-四神瓦当-情境体验.pptx",
-  "ppts-all/五年级-3课时-四神瓦当-生动活泼.pptx",
-  "ppts-all/五年级-3课时-屋顶小神兽-严谨专业.pptx",
-  "ppts-all/五年级-3课时-屋顶小神兽-互动探究.pptx",
-  "ppts-all/五年级-3课时-屋顶小神兽-情境体验.pptx",
-  "ppts-all/五年级-3课时-屋顶小神兽-生动活泼.pptx",
-  "ppts-all/五年级-3课时-瓦作营造与守护-严谨专业.pptx",
-  "ppts-all/五年级-3课时-瓦作营造与守护-互动探究.pptx",
-  "ppts-all/五年级-3课时-瓦作营造与守护-情境体验.pptx",
-  "ppts-all/五年级-3课时-瓦作营造与守护-生动活泼.pptx",
-  "ppts-all/五年级-3课时-瓦当纹样初识-严谨专业.pptx",
-  "ppts-all/五年级-3课时-瓦当纹样初识-互动探究.pptx",
-  "ppts-all/五年级-3课时-瓦当纹样初识-情境体验.pptx",
-  "ppts-all/五年级-3课时-瓦当纹样初识-生动活泼.pptx",
-  "ppts-all/五年级-3课时-纹样会说话-严谨专业.pptx",
-  "ppts-all/五年级-3课时-纹样会说话-互动探究.pptx",
-  "ppts-all/五年级-3课时-纹样会说话-情境体验.pptx",
-  "ppts-all/五年级-3课时-纹样会说话-生动活泼.pptx",
-  "ppts-all/五年级-3课时-认识瓦当-严谨专业.pptx",
-  "ppts-all/五年级-3课时-认识瓦当-互动探究.pptx",
-  "ppts-all/五年级-3课时-认识瓦当-情境体验.pptx",
-  "ppts-all/五年级-3课时-认识瓦当-生动活泼.pptx",
-  "ppts-all/六年级-1课时-四神瓦当-严谨专业.pptx",
-  "ppts-all/六年级-1课时-四神瓦当-互动探究.pptx",
-  "ppts-all/六年级-1课时-四神瓦当-情境体验.pptx",
-  "ppts-all/六年级-1课时-四神瓦当-生动活泼.pptx",
-  "ppts-all/六年级-1课时-屋顶小神兽-严谨专业.pptx",
-  "ppts-all/六年级-1课时-屋顶小神兽-互动探究.pptx",
-  "ppts-all/六年级-1课时-屋顶小神兽-情境体验.pptx",
-  "ppts-all/六年级-1课时-屋顶小神兽-生动活泼.pptx",
-  "ppts-all/六年级-1课时-瓦作营造与守护-严谨专业.pptx",
-  "ppts-all/六年级-1课时-瓦作营造与守护-互动探究.pptx",
-  "ppts-all/六年级-1课时-瓦作营造与守护-情境体验.pptx",
-  "ppts-all/六年级-1课时-瓦作营造与守护-生动活泼.pptx",
-  "ppts-all/六年级-1课时-瓦当纹样初识-严谨专业.pptx",
-  "ppts-all/六年级-1课时-瓦当纹样初识-互动探究.pptx",
-  "ppts-all/六年级-1课时-瓦当纹样初识-情境体验.pptx",
-  "ppts-all/六年级-1课时-瓦当纹样初识-生动活泼.pptx",
-  "ppts-all/六年级-1课时-纹样会说话-严谨专业.pptx",
-  "ppts-all/六年级-1课时-纹样会说话-互动探究.pptx",
-  "ppts-all/六年级-1课时-纹样会说话-情境体验.pptx",
-  "ppts-all/六年级-1课时-纹样会说话-生动活泼.pptx",
-  "ppts-all/六年级-1课时-认识瓦当-严谨专业.pptx",
-  "ppts-all/六年级-1课时-认识瓦当-互动探究.pptx",
-  "ppts-all/六年级-1课时-认识瓦当-情境体验.pptx",
-  "ppts-all/六年级-1课时-认识瓦当-生动活泼.pptx",
-  "ppts-all/六年级-2课时-四神瓦当-严谨专业.pptx",
-  "ppts-all/六年级-2课时-四神瓦当-互动探究.pptx",
-  "ppts-all/六年级-2课时-四神瓦当-情境体验.pptx",
-  "ppts-all/六年级-2课时-四神瓦当-生动活泼.pptx",
-  "ppts-all/六年级-2课时-屋顶小神兽-严谨专业.pptx",
-  "ppts-all/六年级-2课时-屋顶小神兽-互动探究.pptx",
-  "ppts-all/六年级-2课时-屋顶小神兽-情境体验.pptx",
-  "ppts-all/六年级-2课时-屋顶小神兽-生动活泼.pptx",
-  "ppts-all/六年级-2课时-瓦作营造与守护-严谨专业.pptx",
-  "ppts-all/六年级-2课时-瓦作营造与守护-互动探究.pptx",
-  "ppts-all/六年级-2课时-瓦作营造与守护-情境体验.pptx",
-  "ppts-all/六年级-2课时-瓦作营造与守护-生动活泼.pptx",
-  "ppts-all/六年级-2课时-瓦当纹样初识-严谨专业.pptx",
-  "ppts-all/六年级-2课时-瓦当纹样初识-互动探究.pptx",
-  "ppts-all/六年级-2课时-瓦当纹样初识-情境体验.pptx",
-  "ppts-all/六年级-2课时-瓦当纹样初识-生动活泼.pptx",
-  "ppts-all/六年级-2课时-纹样会说话-严谨专业.pptx",
-  "ppts-all/六年级-2课时-纹样会说话-互动探究.pptx",
-  "ppts-all/六年级-2课时-纹样会说话-情境体验.pptx",
-  "ppts-all/六年级-2课时-纹样会说话-生动活泼.pptx",
-  "ppts-all/六年级-2课时-认识瓦当-严谨专业.pptx",
-  "ppts-all/六年级-2课时-认识瓦当-互动探究.pptx",
-  "ppts-all/六年级-2课时-认识瓦当-情境体验.pptx",
-  "ppts-all/六年级-2课时-认识瓦当-生动活泼.pptx",
-  "ppts-all/六年级-3课时-四神瓦当-严谨专业.pptx",
-  "ppts-all/六年级-3课时-四神瓦当-互动探究.pptx",
-  "ppts-all/六年级-3课时-四神瓦当-情境体验.pptx",
-  "ppts-all/六年级-3课时-四神瓦当-生动活泼.pptx",
-  "ppts-all/六年级-3课时-屋顶小神兽-严谨专业.pptx",
-  "ppts-all/六年级-3课时-屋顶小神兽-互动探究.pptx",
-  "ppts-all/六年级-3课时-屋顶小神兽-情境体验.pptx",
-  "ppts-all/六年级-3课时-屋顶小神兽-生动活泼.pptx",
-  "ppts-all/六年级-3课时-瓦作营造与守护-严谨专业.pptx",
-  "ppts-all/六年级-3课时-瓦作营造与守护-互动探究.pptx",
-  "ppts-all/六年级-3课时-瓦作营造与守护-情境体验.pptx",
-  "ppts-all/六年级-3课时-瓦作营造与守护-生动活泼.pptx",
-  "ppts-all/六年级-3课时-瓦当纹样初识-严谨专业.pptx",
-  "ppts-all/六年级-3课时-瓦当纹样初识-互动探究.pptx",
-  "ppts-all/六年级-3课时-瓦当纹样初识-情境体验.pptx",
-  "ppts-all/六年级-3课时-瓦当纹样初识-生动活泼.pptx",
-  "ppts-all/六年级-3课时-纹样会说话-严谨专业.pptx",
-  "ppts-all/六年级-3课时-纹样会说话-互动探究.pptx",
-  "ppts-all/六年级-3课时-纹样会说话-情境体验.pptx",
-  "ppts-all/六年级-3课时-纹样会说话-生动活泼.pptx",
-  "ppts-all/六年级-3课时-认识瓦当-严谨专业.pptx",
-  "ppts-all/六年级-3课时-认识瓦当-互动探究.pptx",
-  "ppts-all/六年级-3课时-认识瓦当-情境体验.pptx",
-  "ppts-all/六年级-3课时-认识瓦当-生动活泼.pptx",
-  "ppts-all/四年级-1课时-四神瓦当-严谨专业.pptx",
-  "ppts-all/四年级-1课时-四神瓦当-互动探究.pptx",
-  "ppts-all/四年级-1课时-四神瓦当-情境体验.pptx",
-  "ppts-all/四年级-1课时-四神瓦当-生动活泼.pptx",
-  "ppts-all/四年级-1课时-屋顶小神兽-严谨专业.pptx",
-  "ppts-all/四年级-1课时-屋顶小神兽-互动探究.pptx",
-  "ppts-all/四年级-1课时-屋顶小神兽-情境体验.pptx",
-  "ppts-all/四年级-1课时-屋顶小神兽-生动活泼.pptx",
-  "ppts-all/四年级-1课时-瓦作营造与守护-严谨专业.pptx",
-  "ppts-all/四年级-1课时-瓦作营造与守护-互动探究.pptx",
-  "ppts-all/四年级-1课时-瓦作营造与守护-情境体验.pptx",
-  "ppts-all/四年级-1课时-瓦作营造与守护-生动活泼.pptx",
-  "ppts-all/四年级-1课时-瓦当纹样初识-严谨专业.pptx",
-  "ppts-all/四年级-1课时-瓦当纹样初识-互动探究.pptx",
-  "ppts-all/四年级-1课时-瓦当纹样初识-情境体验.pptx",
-  "ppts-all/四年级-1课时-瓦当纹样初识-生动活泼.pptx",
-  "ppts-all/四年级-1课时-纹样会说话-严谨专业.pptx",
-  "ppts-all/四年级-1课时-纹样会说话-互动探究.pptx",
-  "ppts-all/四年级-1课时-纹样会说话-情境体验.pptx",
-  "ppts-all/四年级-1课时-纹样会说话-生动活泼.pptx",
-  "ppts-all/四年级-1课时-认识瓦当-严谨专业.pptx",
-  "ppts-all/四年级-1课时-认识瓦当-互动探究.pptx",
-  "ppts-all/四年级-1课时-认识瓦当-情境体验.pptx",
-  "ppts-all/四年级-1课时-认识瓦当-生动活泼.pptx",
-  "ppts-all/四年级-2课时-四神瓦当-严谨专业.pptx",
-  "ppts-all/四年级-2课时-四神瓦当-互动探究.pptx",
-  "ppts-all/四年级-2课时-四神瓦当-情境体验.pptx",
-  "ppts-all/四年级-2课时-四神瓦当-生动活泼.pptx",
-  "ppts-all/四年级-2课时-屋顶小神兽-严谨专业.pptx",
-  "ppts-all/四年级-2课时-屋顶小神兽-互动探究.pptx",
-  "ppts-all/四年级-2课时-屋顶小神兽-情境体验.pptx",
-  "ppts-all/四年级-2课时-屋顶小神兽-生动活泼.pptx",
-  "ppts-all/四年级-2课时-瓦作营造与守护-严谨专业.pptx",
-  "ppts-all/四年级-2课时-瓦作营造与守护-互动探究.pptx",
-  "ppts-all/四年级-2课时-瓦作营造与守护-情境体验.pptx",
-  "ppts-all/四年级-2课时-瓦作营造与守护-生动活泼.pptx",
-  "ppts-all/四年级-2课时-瓦当纹样初识-严谨专业.pptx",
-  "ppts-all/四年级-2课时-瓦当纹样初识-互动探究.pptx",
-  "ppts-all/四年级-2课时-瓦当纹样初识-情境体验.pptx",
-  "ppts-all/四年级-2课时-瓦当纹样初识-生动活泼.pptx",
-  "ppts-all/四年级-2课时-纹样会说话-严谨专业.pptx",
-  "ppts-all/四年级-2课时-纹样会说话-互动探究.pptx",
-  "ppts-all/四年级-2课时-纹样会说话-情境体验.pptx",
-  "ppts-all/四年级-2课时-纹样会说话-生动活泼.pptx",
-  "ppts-all/四年级-2课时-认识瓦当-严谨专业.pptx",
-  "ppts-all/四年级-2课时-认识瓦当-互动探究.pptx",
-  "ppts-all/四年级-2课时-认识瓦当-情境体验.pptx",
-  "ppts-all/四年级-2课时-认识瓦当-生动活泼.pptx",
-  "ppts-all/四年级-3课时-四神瓦当-严谨专业.pptx",
-  "ppts-all/四年级-3课时-四神瓦当-互动探究.pptx",
-  "ppts-all/四年级-3课时-四神瓦当-情境体验.pptx",
-  "ppts-all/四年级-3课时-四神瓦当-生动活泼.pptx",
-  "ppts-all/四年级-3课时-屋顶小神兽-严谨专业.pptx",
-  "ppts-all/四年级-3课时-屋顶小神兽-互动探究.pptx",
-  "ppts-all/四年级-3课时-屋顶小神兽-情境体验.pptx",
-  "ppts-all/四年级-3课时-屋顶小神兽-生动活泼.pptx",
-  "ppts-all/四年级-3课时-瓦作营造与守护-严谨专业.pptx",
-  "ppts-all/四年级-3课时-瓦作营造与守护-互动探究.pptx",
-  "ppts-all/四年级-3课时-瓦作营造与守护-情境体验.pptx",
-  "ppts-all/四年级-3课时-瓦作营造与守护-生动活泼.pptx",
-  "ppts-all/四年级-3课时-瓦当纹样初识-严谨专业.pptx",
-  "ppts-all/四年级-3课时-瓦当纹样初识-互动探究.pptx",
-  "ppts-all/四年级-3课时-瓦当纹样初识-情境体验.pptx",
-  "ppts-all/四年级-3课时-瓦当纹样初识-生动活泼.pptx",
-  "ppts-all/四年级-3课时-纹样会说话-严谨专业.pptx",
-  "ppts-all/四年级-3课时-纹样会说话-互动探究.pptx",
-  "ppts-all/四年级-3课时-纹样会说话-情境体验.pptx",
-  "ppts-all/四年级-3课时-纹样会说话-生动活泼.pptx",
-  "ppts-all/四年级-3课时-认识瓦当-严谨专业.pptx",
-  "ppts-all/四年级-3课时-认识瓦当-互动探究.pptx",
-  "ppts-all/四年级-3课时-认识瓦当-情境体验.pptx",
-  "ppts-all/四年级-3课时-认识瓦当-生动活泼.pptx",
-  "ppts/一年级-1课时-认识瓦当-生动活泼.pptx",
-  "ppts/三年级-2课时-屋顶小神兽-互动探究.pptx",
-  "ppts/二年级-1课时-瓦当纹样初识-生动活泼.pptx",
-  "ppts/五年级-2课时-四神瓦当-情境体验.pptx",
-  "ppts/六年级-3课时-瓦作营造与守护-严谨专业.pptx",
-  "ppts/四年级-2课时-纹样会说话-互动探究.pptx",
-  "video-thumbs-en/bainiao-wazuo-xiaoqingwa.png",
-  "video-thumbs-en/jiangtaigong-taoshou-tongwa.png",
-  "video-thumbs-en/suanni.png",
-  "video-thumbs-en/wadang-history.png",
-  "video-thumbs-en/wading.png",
-  "video-thumbs-en/wazuo.png",
-  "video-thumbs-en/xiaoshi-yuji-zhensha.png",
-  "video-thumbs/bainiao-wazuo-xiaoqingwa.png",
-  "video-thumbs/jiangtaigong-taoshou-tongwa.png",
-  "video-thumbs/suanni.png",
-  "video-thumbs/wadang-history.png",
-  "video-thumbs/wading.png",
-  "video-thumbs/wazuo.png",
-  "video-thumbs/xiaoshi-yuji-zhensha.png",
-  "videos-web-en/bainiao-wazuo-xiaoqingwa.mp4",
-  "videos-web-en/jiangtaigong-taoshou-tongwa.mp4",
-  "videos-web-en/suanni.mp4",
-  "videos-web-en/wadang-history.mp4",
-  "videos-web-en/wading.mp4",
-  "videos-web-en/wazuo.mp4",
-  "videos-web-en/xiaoshi-yuji-zhensha.mp4",
-  "videos-web/bainiao-wazuo-xiaoqingwa.mp4",
-  "videos-web/jiangtaigong-taoshou-tongwa.mp4",
-  "videos-web/suanni.mp4",
-  "videos-web/wadang-history.mp4",
-  "videos-web/wading.mp4",
-  "videos-web/wazuo.mp4",
-  "videos-web/xiaoshi-yuji-zhensha.mp4"
+ {
+  "path": "video-thumbs/bainiao.jpg",
+  "bytes": 24052
+ },
+ {
+  "path": "video-thumbs/jiangtaigong.jpg",
+  "bytes": 33473
+ },
+ {
+  "path": "video-thumbs/taoshou.jpg",
+  "bytes": 42203
+ },
+ {
+  "path": "video-thumbs/wanjuan.jpg",
+  "bytes": 51670
+ },
+ {
+  "path": "video-thumbs/xiaoqingwa.jpg",
+  "bytes": 29052
+ },
+ {
+  "path": "video-thumbs/xiaoshi.jpg",
+  "bytes": 39156
+ },
+ {
+  "path": "video-thumbs/yuji.jpg",
+  "bytes": 38649
+ },
+ {
+  "path": "video-thumbs/zhensha.jpg",
+  "bytes": 35148
+ },
+ {
+  "path": "student-works/work-01-zhuque-caihui.jpg",
+  "bytes": 166583
+ },
+ {
+  "path": "student-works/work-02-zhuque-xianmiao.jpg",
+  "bytes": 167348
+ },
+ {
+  "path": "student-works/work-03-zhuque-nisu.jpg",
+  "bytes": 149804
+ },
+ {
+  "path": "student-works/work-04-zhuque-zuhe.jpg",
+  "bytes": 184300
+ },
+ {
+  "path": "student-works/work-05-lianhua-nisu.jpg",
+  "bytes": 191951
+ },
+ {
+  "path": "student-works/work-06-qinglong-caihui.jpg",
+  "bytes": 300943
+ },
+ {
+  "path": "student-works/work-07-jiyu-nisu.jpg",
+  "bytes": 154783
+ },
+ {
+  "path": "student-works/work-08-lianhua-caihui.jpg",
+  "bytes": 205299
+ },
+ {
+  "path": "student-works/work-09-lianhua-nisu2.jpg",
+  "bytes": 260846
+ },
+ {
+  "path": "student-works/work-10-kuiwen-nisu.jpg",
+  "bytes": 157740
+ },
+ {
+  "path": "student-works/work-11-shoumian-nisu.jpg",
+  "bytes": 178833
+ },
+ {
+  "path": "student-works/work-12-shoumian-nisu2.jpg",
+  "bytes": 72208
+ },
+ {
+  "path": "student-works/work-13-zuopin-zhanshi.jpg",
+  "bytes": 221341
+ },
+ {
+  "path": "student-works/work-14-zuopin-zhanshi2.jpg",
+  "bytes": 179865
+ },
+ {
+  "path": "student-works/work-15-zuopin-zhanshi3.jpg",
+  "bytes": 202507
+ },
+ {
+  "path": "student-works/thumbs/work-01-zhuque-caihui.jpg",
+  "bytes": 24620
+ },
+ {
+  "path": "student-works/thumbs/work-02-zhuque-xianmiao.jpg",
+  "bytes": 20046
+ },
+ {
+  "path": "student-works/thumbs/work-03-zhuque-nisu.jpg",
+  "bytes": 22449
+ },
+ {
+  "path": "student-works/thumbs/work-04-zhuque-zuhe.jpg",
+  "bytes": 26617
+ },
+ {
+  "path": "student-works/thumbs/work-05-lianhua-nisu.jpg",
+  "bytes": 22957
+ },
+ {
+  "path": "student-works/thumbs/work-06-qinglong-caihui.jpg",
+  "bytes": 39813
+ },
+ {
+  "path": "student-works/thumbs/work-07-jiyu-nisu.jpg",
+  "bytes": 23063
+ },
+ {
+  "path": "student-works/thumbs/work-08-lianhua-caihui.jpg",
+  "bytes": 29821
+ },
+ {
+  "path": "student-works/thumbs/work-09-lianhua-nisu2.jpg",
+  "bytes": 30751
+ },
+ {
+  "path": "student-works/thumbs/work-10-kuiwen-nisu.jpg",
+  "bytes": 23463
+ },
+ {
+  "path": "student-works/thumbs/work-11-shoumian-nisu.jpg",
+  "bytes": 21326
+ },
+ {
+  "path": "student-works/thumbs/work-12-shoumian-nisu2.jpg",
+  "bytes": 12842
+ },
+ {
+  "path": "student-works/thumbs/work-13-zuopin-zhanshi.jpg",
+  "bytes": 31582
+ },
+ {
+  "path": "student-works/thumbs/work-14-zuopin-zhanshi2.jpg",
+  "bytes": 26641
+ },
+ {
+  "path": "student-works/thumbs/work-15-zuopin-zhanshi3.jpg",
+  "bytes": 30031
+ },
+ {
+  "path": "lesson-plans/一年级-1课时-认识瓦当-生动活泼.html",
+  "bytes": 1836
+ },
+ {
+  "path": "lesson-plans/三年级-2课时-屋顶小神兽-互动探究.html",
+  "bytes": 1845
+ },
+ {
+  "path": "lesson-plans/二年级-1课时-瓦当纹样初识-生动活泼.html",
+  "bytes": 1824
+ },
+ {
+  "path": "lesson-plans/五年级-2课时-四神瓦当-情境体验.html",
+  "bytes": 12691
+ },
+ {
+  "path": "lesson-plans/六年级-3课时-瓦作营造与守护-严谨专业.html",
+  "bytes": 1899
+ },
+ {
+  "path": "lesson-plans/四年级-2课时-纹样会说话-互动探究.html",
+  "bytes": 1839
+ },
+ {
+  "path": "videos-web/bainiao.mp4",
+  "bytes": 6331233
+ },
+ {
+  "path": "videos-web/jiangtaigong.mp4",
+  "bytes": 7405339
+ },
+ {
+  "path": "videos-web/taoshou.mp4",
+  "bytes": 8256529
+ },
+ {
+  "path": "videos-web/wanjuan.mp4",
+  "bytes": 8133473
+ },
+ {
+  "path": "videos-web/xiaoqingwa.mp4",
+  "bytes": 4807770
+ },
+ {
+  "path": "videos-web/xiaoshi.mp4",
+  "bytes": 6337536
+ },
+ {
+  "path": "videos-web/yuji.mp4",
+  "bytes": 6845376
+ },
+ {
+  "path": "videos-web/zhensha.mp4",
+  "bytes": 9819435
+ },
+ {
+  "path": "ppts-all/五年级-2课时-四神瓦当-情境体验.pptx",
+  "bytes": 405450
+ },
+ {
+  "path": "pattern-library-docx-images/docx-pattern-01.jpeg",
+  "bytes": 41899
+ },
+ {
+  "path": "pattern-library-docx-images/docx-pattern-02.png",
+  "bytes": 409165
+ },
+ {
+  "path": "pattern-library-docx-images/docx-pattern-03.jpeg",
+  "bytes": 16234
+ },
+ {
+  "path": "pattern-library-docx-images/docx-pattern-04.jpeg",
+  "bytes": 27180
+ },
+ {
+  "path": "pattern-library-docx-images/docx-pattern-05.jpeg",
+  "bytes": 45056
+ },
+ {
+  "path": "pattern-library-docx-images/docx-pattern-06.jpeg",
+  "bytes": 22597
+ },
+ {
+  "path": "pattern-library-docx-images/docx-pattern-07.jpeg",
+  "bytes": 30720
+ },
+ {
+  "path": "pattern-library-docx-images/docx-pattern-08.jpeg",
+  "bytes": 28280
+ },
+ {
+  "path": "pattern-library-docx-images/docx-pattern-09.jpeg",
+  "bytes": 43386
+ },
+ {
+  "path": "pattern-library-docx-images/docx-pattern-10.jpeg",
+  "bytes": 27764
+ },
+ {
+  "path": "pattern-library-docx-images/docx-pattern-11.jpeg",
+  "bytes": 33786
+ },
+ {
+  "path": "pattern-library-docx-images/docx-pattern-12.jpeg",
+  "bytes": 26860
+ },
+ {
+  "path": "pattern-library-docx-images/docx-pattern-13.jpeg",
+  "bytes": 60307
+ },
+ {
+  "path": "pattern-library-docx-images/docx-pattern-14.jpeg",
+  "bytes": 50928
+ },
+ {
+  "path": "pattern-library-docx-images/docx-pattern-15.jpeg",
+  "bytes": 36301
+ },
+ {
+  "path": "pattern-library-docx-images/docx-pattern-16.jpeg",
+  "bytes": 23319
+ },
+ {
+  "path": "pattern-library-docx-images/docx-pattern-17.jpeg",
+  "bytes": 25110
+ },
+ {
+  "path": "pattern-library-docx-images/docx-pattern-18.jpeg",
+  "bytes": 21389
+ },
+ {
+  "path": "pattern-library-docx-images/docx-pattern-19.jpeg",
+  "bytes": 29452
+ },
+ {
+  "path": "pattern-library-docx-images/docx-pattern-20.jpeg",
+  "bytes": 30045
+ },
+ {
+  "path": "pattern-library-docx-images/docx-pattern-21.jpeg",
+  "bytes": 51625
+ },
+ {
+  "path": "pattern-library-docx-images/docx-pattern-22.jpeg",
+  "bytes": 69603
+ },
+ {
+  "path": "pattern-library-docx-images/docx-pattern-23.jpeg",
+  "bytes": 53896
+ },
+ {
+  "path": "pattern-library-docx-images/docx-pattern-24.jpeg",
+  "bytes": 73242
+ },
+ {
+  "path": "pattern-library-docx-images/docx-pattern-25.jpeg",
+  "bytes": 66619
+ },
+ {
+  "path": "pattern-library-docx-images/docx-pattern-26.jpeg",
+  "bytes": 62739
+ },
+ {
+  "path": "pattern-library-docx-images/docx-pattern-27.jpeg",
+  "bytes": 21795
+ },
+ {
+  "path": "pattern-library-docx-images/docx-pattern-28.jpeg",
+  "bytes": 27149
+ },
+ {
+  "path": "pattern-library-docx-images/docx-pattern-29.jpeg",
+  "bytes": 65489
+ },
+ {
+  "path": "pattern-library-docx-images/docx-pattern-30.jpeg",
+  "bytes": 26781
+ },
+ {
+  "path": "pattern-library-docx-images/docx-pattern-31.jpeg",
+  "bytes": 58008
+ },
+ {
+  "path": "pattern-library-docx-images/docx-pattern-32.jpeg",
+  "bytes": 50009
+ },
+ {
+  "path": "pattern-library-docx-images/docx-pattern-33.jpeg",
+  "bytes": 85852
+ },
+ {
+  "path": "pattern-library-docx-images/docx-pattern-34.jpeg",
+  "bytes": 51888
+ },
+ {
+  "path": "pattern-library-docx-images/docx-pattern-35.jpeg",
+  "bytes": 63154
+ },
+ {
+  "path": "pattern-library-docx-images/docx-pattern-36.jpeg",
+  "bytes": 28107
+ },
+ {
+  "path": "pattern-library-docx-images/docx-pattern-37.jpeg",
+  "bytes": 47272
+ },
+ {
+  "path": "pattern-library-docx-images/docx-pattern-38.jpeg",
+  "bytes": 65414
+ },
+ {
+  "path": "pattern-library-docx-images/docx-pattern-39.jpeg",
+  "bytes": 94012
+ },
+ {
+  "path": "pattern-library-docx-images/docx-pattern-40.jpeg",
+  "bytes": 44523
+ },
+ {
+  "path": "pattern-library-docx-images/docx-pattern-41.jpeg",
+  "bytes": 51801
+ },
+ {
+  "path": "pattern-library-docx-images/docx-pattern-42.jpeg",
+  "bytes": 33878
+ },
+ {
+  "path": "pattern-library-docx-images/docx-pattern-43.jpeg",
+  "bytes": 53402
+ },
+ {
+  "path": "pattern-library-docx-images/docx-pattern-44.jpeg",
+  "bytes": 41482
+ },
+ {
+  "path": "pattern-library-docx-images/docx-pattern-45.jpeg",
+  "bytes": 34412
+ },
+ {
+  "path": "pattern-library-docx-images/docx-pattern-46.png",
+  "bytes": 302563
+ },
+ {
+  "path": "pattern-library-docx-images/docx-pattern-47.png",
+  "bytes": 335792
+ },
+ {
+  "path": "pattern-library-docx-images/docx-pattern-48.png",
+  "bytes": 200753
+ },
+ {
+  "path": "pattern-library-docx-images/docx-pattern-49.png",
+  "bytes": 407671
+ },
+ {
+  "path": "pattern-library-docx-images/docx-pattern-50.png",
+  "bytes": 540060
+ },
+ {
+  "path": "pattern-library-docx-images/docx-pattern-51.png",
+  "bytes": 354967
+ },
+ {
+  "path": "pattern-library-docx-images/docx-pattern-52.png",
+  "bytes": 364514
+ },
+ {
+  "path": "pattern-library-docx-images/docx-pattern-53.png",
+  "bytes": 321205
+ },
+ {
+  "path": "pattern-library-docx-images/docx-pattern-54.png",
+  "bytes": 409505
+ },
+ {
+  "path": "pattern-library-docx-images/docx-pattern-55.png",
+  "bytes": 252851
+ },
+ {
+  "path": "pattern-library-docx-images/docx-pattern-56.png",
+  "bytes": 231101
+ },
+ {
+  "path": "pattern-library-docx-images/docx-pattern-57.png",
+  "bytes": 302568
+ },
+ {
+  "path": "pattern-library-docx-images/docx-pattern-58.png",
+  "bytes": 267272
+ },
+ {
+  "path": "pattern-library-docx-images/docx-pattern-59.png",
+  "bytes": 105520
+ },
+ {
+  "path": "pattern-library-docx-images/docx-pattern-60.png",
+  "bytes": 226113
+ },
+ {
+  "path": "pattern-library-docx-images/docx-pattern-61.png",
+  "bytes": 248875
+ },
+ {
+  "path": "pattern-library-docx-images/docx-pattern-62.png",
+  "bytes": 311946
+ },
+ {
+  "path": "pattern-library-docx-images/docx-pattern-63.png",
+  "bytes": 153182
+ }
 ]

@@ -1,0 +1,13 @@
+# 文本文件统一 LF，避免跨平台换行差异
+*.html   text eol=lf
+*.md     text eol=lf
+*.json   text eol=lf
+*.command text eol=lf
+*.bat    text eol=crlf
+
+# 二进制素材不做差异比较
+*.mp4    binary
+*.jpg    binary
+*.jpeg   binary
+*.png    binary
+*.pptx   binary
