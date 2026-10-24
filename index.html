@@ -138,9 +138,6 @@
     .hero h1 em{ font-style:normal; color:var(--cinnabar); }
     .hero-rule{ width:72px; height:3px; margin:20px 0 20px; background:linear-gradient(90deg,var(--cinnabar),rgba(168,55,42,0)); border-radius:3px; }
     .hero-lead{ max-width:560px; font-size:17px; line-height:1.85; color:var(--ink-2); }
-    .hero-stats{ display:flex; flex-wrap:wrap; gap:30px; margin-top:28px; }
-    .hero-stats div b{ display:block; font-family:var(--serif); font-size:28px; color:var(--cinnabar); line-height:1.1; }
-    .hero-stats div small{ font-size:12.5px; letter-spacing:.14em; color:var(--ink-3); }
     /* 竖排题签 */
     .hero-seal-col{
       display:flex; flex-direction:column; align-items:center; gap:14px;
@@ -616,7 +613,6 @@
       body{ font-size:15.5px; }
       .wrap{ padding:0 17px; }
       .lineart-list{ grid-template-columns:1fr; }
-      .hero-stats{ gap:20px; } .hero-stats div b{ font-size:24px; }
       .brand-text b{ font-size:16.5px; }
       .brand{ gap:8px; } .seal{ width:32px; height:32px; font-size:18px; }
       .viewnav button{ padding:6px 10px; font-size:13.5px; }
@@ -657,12 +653,6 @@
           <h1>小瓦韵<em>·</em>大课堂</h1>
           <div class="hero-rule"></div>
           <p class="hero-lead">一枚瓦当，是屋檐的护甲，也是古人写给天地的祝福。<br>看微课、识纹样、制瓦坯、拓片、涂彩——把千年屋檐上的纹样，拿到自己手里。</p>
-          <div class="hero-stats">
-            <div><b id="statVideos">7</b><small>课 程 微 课</small></div>
-            <div><b id="statPatterns">63</b><small>瓦 当 纹 样</small></div>
-            <div><b id="statQuiz">56</b><small>随 堂 测 题</small></div>
-            <div><b id="statWorks">15</b><small>同 学 作 品</small></div>
-          </div>
           <div class="actions" style="margin-top:30px">
             <button type="button" class="btn btn-primary" onclick="gotoSection('videos')">开始学习</button>
             <button type="button" class="btn btn-ghost" onclick="gotoSection('coloring-anchor')">去涂一枚瓦当</button>
@@ -850,12 +840,6 @@
           <h1>智能备课<em>助手</em></h1>
           <div class="hero-rule"></div>
           <p class="hero-lead">选年级、课时、主题与教学风格，一键生成课件、教案、陕西研学方案、学情诊断报告与学生作品点评。推理全部在本机完成，不联网、不上传，生成结果可直接下载。</p>
-          <div class="hero-stats">
-            <div><b>5</b><small>生 成 能 力</small></div>
-            <div><b>432</b><small>课 件 组 合</small></div>
-            <div><b id="statTeacherRecords">0</b><small>本 机 测 评 记 录</small></div>
-            <div><b id="statTeacherWorks">0</b><small>本 机 学 生 作 品</small></div>
-          </div>
         </div>
         <div class="hero-seal-col">因 材 施 教 · 以 文 化 人</div>
         <div class="hero-art" id="heroArtTeacher"></div>
@@ -3409,8 +3393,6 @@ ${aiSign(960)}`;
     function refreshTeacherData(){
       const items = readQuizResults();
       const works = readWorks();
-      const sc = document.getElementById("statTeacherRecords"); if (sc) sc.textContent = items.length;
-      const sw = document.getElementById("statTeacherWorks"); if (sw) sw.textContent = allWorks().length;
       const dc = document.getElementById("diagRecordCount"); if (dc) dc.textContent = items.length;
 
       const scopeSel = document.getElementById("diagScope");
@@ -3437,11 +3419,6 @@ ${aiSign(960)}`;
        启动
        ============================================================ */
     (function init(){
-      document.getElementById("statVideos").textContent = videos.length;
-      document.getElementById("statPatterns").textContent = patterns.length;
-      document.getElementById("statQuiz").textContent = quizzes.reduce((s, q) => s + q.questions.length, 0);
-      document.getElementById("statWorks").textContent = works.length;
-
       renderHeroArt();
       renderTopNav("student", "videos");
       renderVideos();
